@@ -1,0 +1,7 @@
+{
+  "name": "moviemind",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -7,6 +7,11 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'home',
+        loadComponent: () =>
+          import('../home/home.page').then((m) => m.HomePage),
+      },
+      {
         path: 'movies',
         loadComponent: () =>
           import('../movies/movies.page').then((m) => m.MoviesPage),
@@ -17,15 +22,10 @@ export const routes: Routes = [
           import('../actors/actors.page').then((m) => m.ActorsPage),
       },
       {
-        path: 'tab3',
-        loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
-      },
-      {
         path: '',
         redirectTo: '/tabs/movies',
         pathMatch: 'full',
-      },
+      }
     ],
   },
   {

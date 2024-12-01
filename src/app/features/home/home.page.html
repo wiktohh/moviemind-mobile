@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-text>
+    <h2 class="px-3 pt-8 py-2 font-semibold">Najpopularniejsze filmy:</h2>
+  </ion-text>
+  <app-slider [data]="movies"></app-slider>
+  <ion-text>
+    <h2 class="px-3 pt-6 py-2 font-semibold">Najpopularniejsi aktorzy:
+      </h2>
+    </ion-text>
+  <app-slider [data]="actors"></app-slider>
+</ion-content>

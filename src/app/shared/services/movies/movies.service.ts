@@ -74,7 +74,7 @@ export class MoviesServiceService {
         poster: 'https://m.media-amazon.com/images/I/71x7df0yZdL._AC_UF1000,1000_QL80_.jpg'
       },
       {
-        title: 'The Lord of the Rings: The Fellowship of the Ring',
+        title: 'The Lord of the Rings',
         year: '2001',
         director: 'Peter Jackson',
         genre: 'Fantasy',

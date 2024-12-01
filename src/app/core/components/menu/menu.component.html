@@ -1,0 +1,36 @@
+<ion-menu menuId="mainMenu" contentId="mainContent" side="end">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        MovieMind
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="h-screen flex flex-col justify-between items-center">
+    <ion-list class="h-full relative">
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/tabs/movies">
+          <ion-icon name="business" slot="start"></ion-icon>
+          <ion-label>Filmy</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/tabs/actors">
+          <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+          <ion-label>Aktorzy</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <div class="absolute bottom-36 left-[50%] transform translate-x-[-50%] flex justify-center items-center gap-12">
+        <button (click)="changeLanguage('pl')"><img class="w-14 h-14 rounded-full" src="../../../../assets/polish_flag.png"></button>
+        <button (click)="changeLanguage('en')"><img class="w-14 h-14 rounded-full" src="../../../../assets/uk_flag.png"></button>
+      </div>
+      <ion-menu-toggle class="absolute bottom-12 left-[50%] transform translate-x-[-50%]">
+        <ion-button class="w-[180px]" color="danger" lines="none" button>
+          <ion-icon name="exit" slot="start"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

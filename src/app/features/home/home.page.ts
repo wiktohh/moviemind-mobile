@@ -7,6 +7,8 @@ import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import {register} from 'swiper/element/bundle';
 import { SliderComponent } from "./slider/slider.component";
+import { addIcons } from 'ionicons';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 register()
 
@@ -15,7 +17,7 @@ register()
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, CommonModule, SliderComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, CommonModule, SliderComponent, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePage implements OnInit {
@@ -23,7 +25,8 @@ export class HomePage implements OnInit {
   movies: Movie[] = []
   actors: Actor[] = []
 
-  constructor(private moviesService: MoviesServiceService, private actorsService: ActorsService) {}
+  constructor(private moviesService: MoviesServiceService, private actorsService: ActorsService, private translate: TranslateService) {
+  }
 
   ngOnInit(): void {
     this.movies = this.moviesService.getMovies()

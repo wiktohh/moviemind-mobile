@@ -4,6 +4,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel
 import { IonSegmentCustomEvent } from '@ionic/core';
 import { addIcons } from 'ionicons';
 import { star } from 'ionicons/icons';
+import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { MoviesServiceService } from 'src/app/shared/services/movies/movies.serv
 })
 export class MoviesPage implements OnInit {
 
-  movies: any[] = [];
+  movies: Movie[] = [];
 
   constructor(private moviesService: MoviesServiceService) {
     addIcons({ star });

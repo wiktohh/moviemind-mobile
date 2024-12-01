@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonText, IonIcon, IonRow, IonButton, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonImg, IonCardContent } from '@ionic/angular/standalone';
+import { Actor } from 'src/app/shared/models/actors/actor.model';
 import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 })
 export class ActorsPage implements OnInit {
 
-  actors: any[] = [];
+  actors: Actor[] = [];
 
   constructor(private actorsService: ActorsService) {}
 

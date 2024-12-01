@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Movies
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment (ionChange)="onFilterUpdate($event)" >
+    <ion-segment-button value="best">
+      <ion-label>Najlepsze</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="worst">
+      <ion-label>Najgorsze</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <!-- <ion-list>
+    <ion-item *ngFor="let movie of movies" class="py-4 w-full flex items-center">
+        <img [src]="movie.poster" class="w-1/4" />
+      <div class="w-3/4 h-full flex flex-col justify-between py-4 px-2">
+        <div class="flex justify-between">
+          <ion-text>{{ movie.title }}</ion-text>
+          <ion-text class="text-sm">{{ movie.year }}</ion-text>
+        </div>
+        <div class="flex flex-col gap-2 text-xs">
+          <ion-text class="text-lg flex items-center gap-1"><ion-icon class="star-icon" name="star"></ion-icon> {{ movie.rating }}</ion-text>
+          <ion-text>Gatunek: {{ movie.genre }}</ion-text>
+          <ion-text>Reżyser: {{ movie.director }}</ion-text>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let movie of movies">
+        <ion-card class="rounded-lg h-[400px]" >
+          <img class="w-[200px] h-4/6" [src]="movie.poster" />
+          <ion-card-header class="h-2/6 px-2 py-2 flex flex-col justify-between">
+            <ion-card-title class="text-md">{{ movie.title }}</ion-card-title>
+            <div class="flex justify-between items-center">
+              <ion-text>{{ movie.year }} &#8226; {{ movie.genre}}</ion-text>
+              <ion-text class="text-lg flex items-center gap-1"><ion-icon class="star-icon" name="star"></ion-icon> {{ movie.rating }}</ion-text>
+            </div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

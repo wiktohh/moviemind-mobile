@@ -12,9 +12,9 @@ export const routes: Routes = [
           import('../movies/movies.page').then((m) => m.MoviesPage),
       },
       {
-        path: 'tab2',
+        path: 'actors',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../actors/actors.page').then((m) => m.ActorsPage),
       },
       {
         path: 'tab3',

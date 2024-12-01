@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonButton, IonIcon, IonAvatar, IonImg, IonText, IonSegment, IonSegmentButton, SegmentChangeEventDetail, IonGrid, IonRow, IonCol, IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonCardHeader } from '@ionic/angular/standalone';
 import { IonSegmentCustomEvent } from '@ionic/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { star } from 'ionicons/icons';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
@@ -13,7 +14,7 @@ import { MoviesServiceService } from 'src/app/shared/services/movies/movies.serv
   styleUrls: ['movies.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonCardHeader, IonCardContent, IonCardSubtitle, IonCardTitle, IonCard, IonCol, IonRow, IonGrid, IonSegmentButton, IonSegment, IonText, IonImg, IonAvatar, IonIcon, IonButton, IonButtons, IonBackButton, IonLabel, IonItem, IonList, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
+  imports: [TranslateModule, IonCardHeader, IonCardContent, IonCardSubtitle, IonCardTitle, IonCard, IonCol, IonRow, IonGrid, IonSegmentButton, IonSegment, IonText, IonImg, IonAvatar, IonIcon, IonButton, IonButtons, IonBackButton, IonLabel, IonItem, IonList, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
 })
 export class MoviesPage implements OnInit {
 

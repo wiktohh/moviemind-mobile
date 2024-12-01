@@ -1,0 +1,18 @@
+{
+  "homePage": {
+    "title": "Strona główna",
+    "mostPopularMovies": "Najpopularniejsze filmy",
+    "mostPopularActors": "Najpopularniejsi aktorzy"
+  },
+  "moviePage": {
+    "title": "Filmy",
+    "best": "Najlepsze",
+    "worst": "Najgorsze"
+  },
+  "actorsPage": {
+    "title": "Aktorzy",
+    "age": "Wiek",
+    "movies": "filmów"
+  },
+  "logout": "Wyloguj się"
+}

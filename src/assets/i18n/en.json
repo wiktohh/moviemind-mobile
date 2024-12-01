@@ -1,0 +1,18 @@
+{
+  "homePage": {
+    "title": "Home Page",
+    "mostPopularMovies": "Most Popular Movies",
+    "mostPopularActors": "Most Popular Actors"
+  },
+  "moviePage": {
+    "title": "Movies",
+    "best": "Best",
+    "worst": "Worst"
+  },
+  "actorsPage": {
+    "title": "Actors",
+    "age": "Age",
+    "movies": "movies"
+  },
+  "logout": "Logout"
+}

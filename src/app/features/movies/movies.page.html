@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="ion-text-center">
-      Movies
+      {{ 'moviePage.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,10 +12,10 @@
 <ion-content [fullscreen]="true">
   <ion-segment (ionChange)="onFilterUpdate($event)" >
     <ion-segment-button value="best">
-      <ion-label>Najlepsze</ion-label>
+      <ion-label>{{ 'moviePage.best' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="worst">
-      <ion-label>Najgorsze</ion-label>
+      <ion-label>{{ 'moviePage.worst' | translate }}</ion-label>
     </ion-segment-button>
   </ion-segment>
   <!-- <ion-list>

@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/actors"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ actor?.firstName }} {{ actor?.lastName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex md:flex-row items-center p-6 gap-6">
+    <img 
+      [src]="actor?.img" 
+      alt="{{ actor?.firstName }} {{ actor?.lastName }}" 
+      class="rounded-lg w-32 h-32 md:w-48 md:h-48 object-cover shadow-lg"
+    />
+  
+    <div class="flex flex-col items-center justify-evenly w-full md:w-1/2 space-y-6">
+      <div class="flex flex-col items-center">
+        <ion-icon name="person-outline" class="text-4xl text-gray-200 mb-2"></ion-icon>
+        <h1 class="text-2xl font-bold text-center text-gray-200">{{ actor?.firstName }} {{ actor?.lastName }}</h1>
+      </div>
+  
+      <div class="flex flex-col items-center">
+        <ion-text class="text-sm font-semibold text-gray-200">Wiek:</ion-text>
+        <p class="text-lg text-gray-200">{{ actor?.age }} lat</p>
+      </div>
+  
+      <div class="flex flex-col items-center">
+        <ion-text class="text-sm font-semibold text-gray-200">Kraj:</ion-text>
+        <p class="text-lg text-gray-200">{{ actor?.country }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-6">
+    <h2 class="text-lg text-center font-semibold mb-2">Biography</h2>
+    <p class="text-gray-200">{{ actor?.biography }}</p>
+  </div>
+
+  <div class="p-6">
+    <h2 class="text-lg font-semibold mb-2">Movies</h2>
+    <ion-list>
+      <ion-item (click)="onMovieClick(movie.id)" *ngFor="let movie of actor?.movies" detail>
+        <ion-label>{{ movie.title }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

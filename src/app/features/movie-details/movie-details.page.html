@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/movies"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ movie?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <img [src]="movie?.poster" />
+  <div class="mx-8">
+    <h1 class="text-4xl my-4 font-semibold text-center">{{ movie?.title }}</h1>
+  <p class="text-center">{{ movie?.description }}</p>
+  <div class="flex items-center justify-center">
+    <div class="mt-6 grid grid-cols-2 gap-x-12 gap-y-4">
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="videocam"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Reżyser</ion-text>
+          <ion-text class="text-sm">{{ movie?.director }}</ion-text>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="earth"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Kraj</ion-text>
+          <ion-text class="text-sm">{{ movie?.country }}</ion-text>
+        </div>
+      </div>
+    
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="film"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Gatunek</ion-text>
+          <ion-text class="text-sm">{{ movie?.genre }}</ion-text>
+        </div>
+      </div>
+  
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="time"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Długość</ion-text>
+          <ion-text class="text-sm">{{ movie?.duration }}</ion-text>
+        </div>
+      </div>
+    
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="calendar"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Rok</ion-text>
+          <ion-text class="text-sm">{{ movie?.year }}</ion-text>
+        </div>
+      </div>
+    
+      <div class="flex items-center gap-3">
+        <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="star"></ion-icon>
+        <div class="flex flex-col">
+          <ion-text class="text-sm font-semibold">Ocena</ion-text>
+          <ion-text class="text-sm">{{ movie?.rating }} / 10</ion-text>
+        </div>
+      </div>
+    </div>  
+  </div>
+  </div>
+
+  <div class="mt-8 mx-8">
+    <h2 class="text-center text-2xl font-semibold mb-4">User Reviews</h2>
+    <ion-list>
+      <ion-item class="my-2" *ngFor="let review of movie?.reviews">
+        <div>
+          <h3 class="text-lg font-semibold">{{ review.user }}</h3>
+          <p class="text-sm text-gray-500">{{ review.date }}</p>
+          <ion-text>{{ review.comment }}</ion-text>
+        </div>
+        <div slot="end" class="flex items-center gap-1">
+          <ion-icon class="text-yellow-500" name="star"></ion-icon>
+          <ion-text>{{ review.rating }}</ion-text>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

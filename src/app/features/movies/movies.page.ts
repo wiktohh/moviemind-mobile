@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonButton, IonIcon, IonAvatar, IonImg, IonText, IonSegment, IonSegmentButton, SegmentChangeEventDetail, IonGrid, IonRow, IonCol, IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonCardHeader } from '@ionic/angular/standalone';
 import { IonSegmentCustomEvent } from '@ionic/core';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,13 +21,17 @@ export class MoviesPage implements OnInit {
 
   movies: Movie[] = [];
 
-  constructor(private moviesService: MoviesServiceService) {
+  constructor(private moviesService: MoviesServiceService, private router: Router) {
     addIcons({ star });
   }
 
   ngOnInit() {
    this.movies = this.moviesService.getMovies()
    console.log(this.movies)
+  }
+
+  goToMovieDetails(movieId: string) {
+    this.router.navigate(['/movies', movieId]);
   }
 
   onFilterUpdate(event: CustomEvent<SegmentChangeEventDetail>) {

@@ -5,123 +5,177 @@ import { Injectable } from '@angular/core';
 })
 export class MoviesServiceService {
 
+  movies = [
+    {
+      id: '1',
+      title: 'The Shawshank Redemption',
+      year: '1994',
+      director: 'Frank Darabont',
+      genre: 'Drama',
+      rating: 9.3,
+      duration: '142 min',
+      country: 'USA',
+      description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
+      reviews: [
+        { user: 'Alice', date: '2023-11-20', comment: 'A timeless masterpiece!', rating: 5 },
+        { user: 'Bob', date: '2023-10-15', comment: 'One of the best movies ever made.', rating: 4.9 }
+      ]
+    },
+    {
+      id: '2',
+      title: 'The Godfather',
+      year: '1972',
+      director: 'Francis Ford Coppola',
+      genre: 'Crime',
+      rating: 9.2,
+      duration: '175 min',
+      country: 'USA',
+      description: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
+      reviews: [
+        { user: 'Charlie', date: '2023-09-05', comment: 'An unparalleled classic in cinema.', rating: 5 },
+        { user: 'Dana', date: '2023-08-22', comment: 'The storyline and acting are phenomenal!', rating: 4.8 }
+      ]
+    },
+    {
+      id: '3',
+      title: 'The Dark Knight',
+      year: '2008',
+      director: 'Christopher Nolan',
+      genre: 'Action',
+      rating: 9.0,
+      duration: '152 min',
+      country: 'USA',
+      description: 'When the menace known as the Joker emerges, Batman must accept one of the greatest psychological and physical challenges of his ability to fight injustice.',
+      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
+      reviews: [
+        { user: 'Eve', date: '2023-07-18', comment: 'Heath Ledger redefined the Joker.', rating: 5 },
+        { user: 'Frank', date: '2023-06-30', comment: 'Nolan’s direction is stunning!', rating: 4.9 }
+      ]
+    },
+    {
+      id: '4',
+      title: '12 Angry Men',
+      year: '1957',
+      director: 'Sidney Lumet',
+      genre: 'Drama',
+      rating: 9.0,
+      duration: '96 min',
+      country: 'USA',
+      description: 'A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.',
+      poster: 'https://m.media-amazon.com/images/I/51v5ZpFyaFL._AC_.jpg',
+      reviews: [
+        { user: 'Grace', date: '2023-05-12', comment: 'A movie that defines "classic".', rating: 4.8 },
+        { user: 'Henry', date: '2023-04-21', comment: 'The tension is palpable.', rating: 4.7 }
+      ]
+    },
+    {
+      id: '5',
+      title: "Harry Potter and the Sorcerer's Stone",
+      year: '2001',
+      director: 'Chris Columbus',
+      genre: 'Fantasy',
+      rating: 7.6,
+      duration: '152 min',
+      country: 'UK',
+      description: 'An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family, and the terrible evil that haunts the magical world.',
+      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjoNXVDN3zi8uPLcHL4Tak6Gzh59N_9mlscA&s',
+      reviews: [
+        { user: 'Isla', date: '2023-03-15', comment: 'A magical journey for all ages.', rating: 4.5 },
+        { user: 'Jack', date: '2023-02-11', comment: 'Nostalgic and heartwarming.', rating: 4.4 }
+      ]
+    },
+    {
+      id: '6',
+      title: 'Pulp Fiction',
+      year: '1994',
+      director: 'Quentin Tarantino',
+      genre: 'Crime',
+      rating: 8.9,
+      duration: '154 min',
+      country: 'USA',
+      description: 'The lives of two mob hitmen, a boxer, a gangster\'s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
+      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKkKEUHiXx-oIrvJd5Sxq3ksChSHyDaRw6xw&s',
+      reviews: [
+        { user: 'Karen', date: '2023-01-10', comment: 'Tarantino’s masterpiece.', rating: 5 },
+        { user: 'Leo', date: '2022-12-20', comment: 'Witty, sharp, and unforgettable.', rating: 4.8 }
+      ]
+    },
+    {
+      id: '7',
+      title: 'Forrest Gump',
+      year: '1994',
+      director: 'Robert Zemeckis',
+      genre: 'Drama',
+      rating: 8.8,
+      duration: '142 min',
+      country: 'USA',
+      description: 'The presidencies of Kennedy and Johnson, the Vietnam War, and more, are seen through the eyes of an Alabama man with an IQ of 75.',
+      poster: 'https://www.galeriaplakatu.com/img/imagecache/580x874_product_media_190695_1020_A-j.webp',
+      reviews: [
+        { user: 'Mia', date: '2022-11-01', comment: 'Heartwarming and inspiring.', rating: 5 },
+        { user: 'Nina', date: '2022-10-15', comment: 'Tom Hanks delivers his best.', rating: 4.9 }
+      ]
+    },
+    {
+      id: '8',
+      title: 'The Matrix',
+      year: '1999',
+      director: 'The Wachowskis',
+      genre: 'Sci-Fi',
+      rating: 8.7,
+      duration: '136 min',
+      country: 'USA',
+      description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
+      poster: 'https://m.media-amazon.com/images/I/71x7df0yZdL._AC_UF1000,1000_QL80_.jpg',
+      reviews: [
+        { user: 'Olivia', date: '2023-09-10', comment: 'Mind-bending and thrilling.', rating: 5 },
+        { user: 'Paul', date: '2023-08-18', comment: 'A sci-fi masterpiece.', rating: 4.9 }
+      ]
+    },
+    {
+      id: '9',
+      title: 'The Lord of the Rings',
+      year: '2001',
+      director: 'Peter Jackson',
+      genre: 'Fantasy',
+      rating: 8.8,
+      duration: '178 min',
+      country: 'New Zealand',
+      description: 'A meek Hobbit and his friends set out to destroy the One Ring and save Middle-earth from the Dark Lord Sauron.',
+      poster: 'https://i.ebayimg.com/images/g/DV4AAOSwmRli4zPU/s-l1200.jpg',
+      reviews: [
+        { user: 'Quinn', date: '2023-03-15', comment: 'An epic adventure.', rating: 5 },
+        { user: 'Ryan', date: '2023-02-20', comment: 'A visual spectacle!', rating: 4.8 }
+      ]
+    },
+    {
+      id: '10',
+      title: 'Inception',
+      year: '2010',
+      director: 'Christopher Nolan',
+      genre: 'Sci-Fi',
+      rating: 8.8,
+      duration: '148 min',
+      country: 'USA',
+      description: 'A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
+      poster: 'https://m.media-amazon.com/images/I/714b1KQmskL._AC_UF1000,1000_QL80_.jpg',
+      reviews: [
+        { user: 'Sophia', date: '2023-04-12', comment: 'Nolan at his best.', rating: 5 },
+        { user: 'Tyler', date: '2023-03-25', comment: 'A movie that keeps you thinking.', rating: 4.8 }
+      ]
+    }
+  ];
+
+
   constructor() { }
 
   getMovies() {
-    const movies = [
-      {
-        title: 'The Shawshank Redemption',
-        year: '1994',
-        director: 'Frank Darabont',
-        genre: 'Drama',
-        rating: 9.3,
-        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU'
-      },
-      {
-        title: 'The Godfather',
-        year: '1972',
-        director: 'Francis Ford Coppola',
-        genre: 'Crime',
-        rating: 9.2,
-        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s'
-      },
-      {
-        title: 'The Dark Knight',
-        year: '2008',
-        director: 'Christopher Nolan',
-        genre: 'Action',
-        rating: 9.0,
-        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s'
-      },
-      {
-        title: '12 Angry Men',
-        year: '1957',
-        director: 'Sidney Lumet',
-        genre: 'Drama',
-        rating: 9.0,
-        poster: 'https://m.media-amazon.com/images/I/51v5ZpFyaFL._AC_.jpg'
-      },
-      {
-        title: "Harry Potter and the Sorcerer's Stone",
-        year: '2001',
-        director: 'Chris Columbus',
-        genre: 'Fantasy',
-        rating: 7.6,
-        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjoNXVDN3zi8uPLcHL4Tak6Gzh59N_9mlscA&s'
-      },
-      {
-        title: 'Pulp Fiction',
-        year: '1994',
-        director: 'Quentin Tarantino',
-        genre: 'Crime',
-        rating: 8.9,
-        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKkKEUHiXx-oIrvJd5Sxq3ksChSHyDaRw6xw&s'
-      },
-      {
-        title: 'Forrest Gump',
-        year: '1994',
-        director: 'Robert Zemeckis',
-        genre: 'Drama',
-        rating: 8.8,
-        poster: 'https://www.galeriaplakatu.com/img/imagecache/580x874_product_media_190695_1020_A-j.webp'
-      },
-      {
-        title: 'The Matrix',
-        year: '1999',
-        director: 'The Wachowskis',
-        genre: 'Sci-Fi',
-        rating: 8.7,
-        poster: 'https://m.media-amazon.com/images/I/71x7df0yZdL._AC_UF1000,1000_QL80_.jpg'
-      },
-      {
-        title: 'The Lord of the Rings',
-        year: '2001',
-        director: 'Peter Jackson',
-        genre: 'Fantasy',
-        rating: 8.8,
-        poster: 'https://i.ebayimg.com/images/g/DV4AAOSwmRli4zPU/s-l1200.jpg'
-      },
-      {
-        title: 'Inception',
-        year: '2010',
-        director: 'Christopher Nolan',
-        genre: 'Sci-Fi',
-        rating: 8.8,
-        poster: 'https://m.media-amazon.com/images/I/714b1KQmskL._AC_UF1000,1000_QL80_.jpg'
-      },
-      {
-        title: 'Fight Club',
-        year: '1999',
-        director: 'David Fincher',
-        genre: 'Drama',
-        rating: 8.8,
-        poster: 'https://m.media-amazon.com/images/I/61IgtYrLF5L._AC_UF1000,1000_QL80_.jpg'
-      },
-      {
-        title: 'The Empire Strikes Back',
-        year: '1980',
-        director: 'Irvin Kershner',
-        genre: 'Sci-Fi',
-        rating: 8.7,
-        poster: 'https://m.media-amazon.com/images/I/71fjaR6+MhL._AC_UF1000,1000_QL80_.jpg'
-      },
-      {
-        title: 'Gladiator',
-        year: '2000',
-        director: 'Ridley Scott',
-        genre: 'Action',
-        rating: 8.5,
-        poster: 'https://www.galeriaplakatu.com/img/imagecache/28001-29000/334x500_product_media_28001-29000_GLADIATOR_POSTER-j.webp'
-      },
-      {
-        title: 'Avatar',
-        year: '2009',
-        director: 'James Cameron',
-        genre: 'Sci-Fi',
-        rating: 7.8,
-        poster: 'https://static.posters.cz/image/1300/plakaty/avatar-limited-ed-one-sheet-sun-i7182.jpg'
-      }
-    ];
-    return movies;
+    return this.movies;
+  }
+
+  getMovieById(id: string) {
+    return this.movies.find(movie => movie.id === id);
   }
 }

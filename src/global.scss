@@ -42,3 +42,33 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-header {
+    outline: none;
+    box-shadow: none !important;
+    background-color: var(--header-color) !important;
+
+    ion-toolbar { /* Zamiast background-color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      
+      ion-title {
+        --color: var(--title-color); /* Używaj zmiennych dla tekstu */
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+  }
+  ion-content {
+    --background: var(--background-color);
+  }
+
+// ion-header ion-toolbar ion-buttons[slot="start"],
+// ion-header ion-toolbar ion-buttons[slot="end"] {
+//   position: relative; /* Zachowaj standardowe wyrównanie */
+// }

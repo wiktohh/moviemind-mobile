@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
-import { exit } from 'ionicons/icons';
+import { exit, settings } from 'ionicons/icons';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +17,7 @@ export class MenuComponent {
   lang: string = '';
 
   constructor(private translate: TranslateService) {
-    addIcons({ exit });
+    addIcons({ exit, settings });
    }
 
    changeLanguage(lang: string){

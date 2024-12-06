@@ -27,10 +27,16 @@ export const routes: Routes = [
           import('../search/search.page').then((m) => m.SearchPage),
       },
       {
+        path: 'settings',
+        loadComponent: () =>
+          import('../settings/settings.page').then((m) => m.SettingsPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/movies',
         pathMatch: 'full',
-      }
+      },
+    
     ],
   },
   {

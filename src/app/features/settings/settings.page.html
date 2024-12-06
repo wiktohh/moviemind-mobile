@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/movies"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Ustawienia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Tryb ciemny</ion-label>
+      <ion-toggle
+        slot="end"
+        [(ngModel)]="isDarkTheme"
+        (ionChange)="toggleTheme()"
+      ></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Język</ion-label>
+      <ion-select
+        slot="end"
+        [(ngModel)]="selectedLanguage"
+        (ionChange)="changeLanguage($event)"
+      >
+        <ion-select-option value="pl">Polski</ion-select-option>
+        <ion-select-option value="en">Angielski</ion-select-option>
+        <ion-select-option value="de">Niemiecki</ion-select-option>
+        <ion-select-option value="fr">Francuski</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

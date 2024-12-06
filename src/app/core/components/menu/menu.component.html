@@ -21,10 +21,12 @@
           <ion-label>{{ 'actorsPage.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <div class="absolute bottom-36 left-[50%] transform translate-x-[-50%] flex justify-center items-center gap-12">
-        <button [ngClass]="{'selected-language': lang === 'pl'}" (click)="changeLanguage('pl')"><img class="w-14 h-14 rounded-full" src="../../../../assets/polish_flag.png"></button>
-        <button [ngClass]="{'selected-language': lang === 'en'}"  (click)="changeLanguage('en')"><img class="w-14 h-14 rounded-full" src="../../../../assets/uk_flag.png"></button>
-      </div>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/tabs/settings">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <ion-label>Ustawienia</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
       <ion-menu-toggle class="absolute bottom-12 left-[50%] transform translate-x-[-50%]">
         <ion-button class="w-[180px]" color="danger" lines="none" button>
           <ion-icon name="exit" slot="start"></ion-icon>

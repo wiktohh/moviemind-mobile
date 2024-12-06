@@ -22,6 +22,11 @@ export const routes: Routes = [
           import('../actors/actors.page').then((m) => m.ActorsPage),
       },
       {
+        path: 'search',
+        loadComponent: () =>
+          import('../search/search.page').then((m) => m.SearchPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/movies',
         pathMatch: 'full',

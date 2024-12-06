@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      Wyszukiwanie
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- Pasek wyszukiwania -->
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="onSearch()"
+    placeholder="Wyszukaj filmy"
+  ></ion-searchbar>
+
+  <!-- Lista wyników -->
+  <ion-list *ngIf="filteredMovies.length > 0">
+    <ion-item *ngFor="let movie of filteredMovies" (click)="goToDetails(movie.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="movie.poster" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.year }} &#8226; {{ movie.genre }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Komunikat, gdy brak wyników -->
+  <div *ngIf="searchTerm && filteredMovies.length === 0" class="no-results">
+    <ion-text>Brak wyników wyszukiwania.</ion-text>
+  </div>
+</ion-content>

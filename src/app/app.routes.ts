@@ -13,7 +13,4 @@ export const routes: Routes = [
     path: 'actors/:id',
     loadComponent: () => import('./features/actor-details/actor-details.page').then( m => m.ActorDetailsPage)
   },
-
-
-
 ];

@@ -6,7 +6,7 @@ import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import {register} from 'swiper/element/bundle';
-import { SliderComponent } from "./slider/slider.component";
+import { SliderComponent } from "../../core/components/slider/slider.component";
 import { addIcons } from 'ionicons';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 

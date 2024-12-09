@@ -9,6 +9,7 @@ export interface Movie {
     description: string;
     duration: string;
     country: string;
+    actors: { firstName: string; lastName: string; id: string; img: string }[];
     reviews: Review[];
 }
 

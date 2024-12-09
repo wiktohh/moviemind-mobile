@@ -7,13 +7,14 @@ import { Actor } from 'src/app/shared/models/actors/actor.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { person, personOutline } from 'ionicons/icons';
+import { SliderComponent } from "../../core/components/slider/slider.component";
 
 @Component({
   selector: 'app-actor-details',
   templateUrl: './actor-details.page.html',
   styleUrls: ['./actor-details.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonList, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
+  imports: [IonLabel, IonItem, IonList, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SliderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ActorDetailsPage implements OnInit {
@@ -27,6 +28,7 @@ export class ActorDetailsPage implements OnInit {
   ngOnInit() {
     this.actorId = this.route.snapshot.paramMap.get('id') || '';
     this.actor = this.actorService.getActorById(this.actorId) || null;
+    console.log(this.actor)
   }
 
   onMovieClick(movieId: string) {

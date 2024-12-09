@@ -16,18 +16,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
-      },
-      {
-        id: '4',
-        title: "12 Angry Men",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Leonardo DiCaprio is an American actor and producer known for his work in films like "Titanic," "Inception," and "The Revenant," for which he won an Academy Award. He is also an environmental activist.'
     },
@@ -41,14 +40,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Natalie Portman is an Israeli-American actress and filmmaker. She has starred in critically acclaimed movies such as "Black Swan," for which she won an Academy Award, and "V for Vendetta."'
     },
@@ -62,14 +64,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Morgan Freeman is an American actor, director, and narrator. Known for his deep, authoritative voice, he has appeared in films like "The Shawshank Redemption" and "Seven."'
     },
@@ -83,14 +88,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Scarlett Johansson is an American actress known for her roles in films like "Lost in Translation" and the Marvel Cinematic Universe, where she played Black Widow.'
     },
@@ -104,14 +112,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Tom Hanks is an American actor and filmmaker known for his versatile roles in films such as "Forrest Gump" and "Saving Private Ryan." He has won multiple Academy Awards.'
     },
@@ -125,14 +136,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Emma Stone is an American actress who won an Academy Award for her performance in "La La Land." She is also known for roles in "Birdman" and "The Amazing Spider-Man."'
     },
@@ -146,14 +160,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Denzel Washington is an American actor and filmmaker. He has received multiple Academy Awards for his work in films like "Training Day" and "Glory."'
     },
@@ -167,14 +184,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Anne Hathaway is an American actress known for her versatility and roles in films like "The Devil Wears Prada" and "Les Misérables," for which she won an Academy Award.'
     },
@@ -188,14 +208,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Christian Bale is a Welsh actor known for his intense performances and transformations, particularly in "The Dark Knight" trilogy and "The Fighter," for which he won an Academy Award.'
     },
@@ -209,14 +232,17 @@ export class ActorsService {
       movies: [{
         id: '1',
         title: "The Shawshank Redemption",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgTLzGS7fm3TheEzBxhzgMxp5rPhoVHxxK2kbfd-rRfEEmHtk7kFZKVrrYslcvw15xjQ&usqp=CAU',
       },
       {
         id: '2',
         title: "The Godfather",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlRWOudz4RSOZDXhNh-evtpORM2jkms88ouQ&s',
       },
       {
         id: '3',
         title: "The Dark Knight",
+        poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERfmV8fgdV4aHIzg9N065NmQWVXAQqbKNmQ&s',
       }],
       biography: 'Meryl Streep is an American actress widely regarded as one of the greatest performers of all time. She has won multiple Academy Awards for films like "The Iron Lady" and "Kramer vs. Kramer."'
     }

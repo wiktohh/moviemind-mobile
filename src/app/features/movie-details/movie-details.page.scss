@@ -9,3 +9,25 @@ img{
     color: #ffcc00;
     font-size: 1.2em;
 }
+
+.rating-container {
+    font-size: 2rem; /* Rozmiar gwiazdek */
+  }
+  
+  .star-icon {
+    cursor: pointer;
+    color: gray;
+    transition: color 0.3s ease; 
+  }
+  
+  .star-icon.active {
+    color: #ffcc00; 
+  }
+  
+  .star-icon:hover {
+    color: #ffcc00;
+  }
+
+  .reviewBtn {
+    --background: #ffcc00;
+  }

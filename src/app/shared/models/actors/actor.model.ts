@@ -4,7 +4,7 @@ export interface Actor {
     lastName: string,
     img: string,
     age: number,
-    movies: {title: string, id: string}[],
+    movies: {title: string, id: string, poster: string}[],
     biography: string,
     country: string
 }

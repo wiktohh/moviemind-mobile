@@ -69,8 +69,32 @@
   </div>
   </div>
 
-  <div class="mt-8 mx-8">
-    <h2 class="text-center text-2xl font-semibold mb-4">User Reviews</h2>
+  <h2 class="text-center text-2xl mt-4">Aktorzy</h2>
+  <swiper-container [slidesPerView] = '2.5' [loop]="true">
+    <swiper-slide *ngFor="let actor of movie!.actors">
+      <ion-card class="relative" (click)="redirectToActor(actor.id)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
+        <img [style.width.px]="150" [style.height.px]="180" [src]="actor.img" />
+        <ion-button 
+        (click)="openActorModal(actor.id); $event.stopPropagation()"
+        class="reviewBtn text-black absolute z-50 text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full  shadow-lg">
+        +
+      </ion-button>
+        <ion-card-header class="h-[60px] px-2 py-2 flex flex-col justify-between">
+            <ion-card-title class="text-sm text-center">{{ actor.firstName}} {{ actor.lastName }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <div class="relative mt-8 mx-8">
+    <div class="flex items-center justify-center">
+      <h2 class="text-center text-2xl font-semibold mb-4">User Reviews</h2>
+    <ion-button 
+      id="open-movie-modal" 
+      class="reviewBtn text-black absolute text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full shadow-lg">
+      +
+    </ion-button>
+    </div>
     <ion-list>
       <ion-item class="my-2" *ngFor="let review of movie?.reviews">
         <div>
@@ -85,4 +109,38 @@
       </ion-item>
     </ion-list>
   </div>
+
+
+  <ion-modal #modal trigger="open-movie-modal" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+    <ion-content class="flex flex-col">
+      <h3 class="my-4 text-2xl text-center">Oceń film</h3>
+      <div class="rating-container flex items-center justify-center gap-2">
+        <ion-icon 
+          *ngFor="let star of stars; let i = index"
+          [name]="i < ratingMovie ? 'star' : 'star-outline'" 
+          class="star-icon" 
+          [class.active]="i < ratingMovie"
+          (click)="rateMovie(i + 1)">
+        </ion-icon>
+      </div>
+      <ion-textarea rows="7" class="my-2" placeholder="Podziel się swoją opinią (opcjonalnie)"></ion-textarea>
+      <ion-button expand="block"  class="mt-4" (click)="submitReview()">Dodaj recenzję</ion-button>
+    </ion-content>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isModalActorOpen" (willDismiss)="closeActorModal()" [initialBreakpoint]="0.25">
+    <ion-content class="flex flex-col">
+      <h3 class="my-4 text-2xl text-center">Oceń rolę aktora</h3>
+      <div class="rating-container flex items-center justify-center gap-2">
+        <ion-icon 
+          *ngFor="let star of stars; let i = index"
+          [name]="i < ratingActor ? 'star' : 'star-outline'" 
+          class="star-icon" 
+          [class.active]="i < ratingActor"
+          (click)="rateActor(i + 1)">
+        </ion-icon>
+      </div>
+      <ion-button expand="block" class="mt-4" (click)="submitActorReview()">Dodaj recenzję</ion-button>
+    </ion-content>
+  </ion-modal>
 </ion-content>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actor } from 'src/app/shared/models/actors/actor.model';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
@@ -13,11 +13,12 @@ import { Movie } from 'src/app/shared/models/movies/movie.model';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SliderComponent {
-
   @Input() data: any[] = [];
   @Input() height: number = 220;
   @Input() width: number = 150;
   @Input() slidesPerView = 2.5;
+  @Output() cardClick = new EventEmitter<Movie | Actor>();
+
 
   constructor(private router: Router) {}
 
@@ -31,6 +32,10 @@ export class SliderComponent {
     } else {
       this.router.navigate(['/actors', el.id]);
     }
+  }
+
+  onCardClick(el: Movie | Actor) {
+    this.cardClick.emit(el)
   }
 
 }

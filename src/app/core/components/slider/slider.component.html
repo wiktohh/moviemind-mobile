@@ -1,11 +1,20 @@
-<swiper-container [slidesPerView] = 'slidesPerView' [loop]="true">
+<swiper-container [slidesPerView]="slidesPerView" [loop]="true">
   <swiper-slide *ngFor="let el of data">
-    <ion-card (click)="redirectToPage(el)" [style.width.px]="width" [style.height.px]="height+50" class="rounded-lg" >
+    <ion-card
+      (click)="onCardClick(el)"
+      [style.width.px]="width"
+      [style.height.px]="height + 50"
+      class="rounded-lg"
+    >
       <img [style.width.px]="width" [style.height.px]="height" [src]="isMovie(el) ? el.poster : el.img" />
       <ion-card-header class="h-[60px] px-2 py-2 flex flex-col justify-between">
-        <ion-card-title *ngIf="isMovie(el); else isActor" class="text-sm text-center">{{el.title}}</ion-card-title>
+        <ion-card-title *ngIf="isMovie(el); else isActor" class="text-sm text-center">
+          {{ el.title }}
+        </ion-card-title>
         <ng-template #isActor>
-          <ion-card-title class="text-sm text-center">{{!isMovie(el) && el.firstName}} {{!isMovie(el) && el.lastName }}</ion-card-title>
+          <ion-card-title class="text-sm text-center">
+            {{ !isMovie(el) && el.firstName }} {{ !isMovie(el) && el.lastName }}
+          </ion-card-title>
         </ng-template>
       </ion-card-header>
     </ion-card>

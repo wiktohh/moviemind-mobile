@@ -13,7 +13,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 register()
 
 @Component({
-  selector: 'app-tab3',
+  selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
@@ -25,8 +25,10 @@ export class HomePage implements OnInit {
   movies: Movie[] = []
   actors: Actor[] = []
 
-  constructor(private moviesService: MoviesServiceService, private actorsService: ActorsService, private translate: TranslateService) {
-  }
+  constructor(
+    private moviesService: MoviesServiceService,
+    private actorsService: ActorsService, 
+    private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.movies = this.moviesService.getMovies()

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { person, personOutline } from 'ionicons/icons';
 import { SliderComponent } from "../../core/components/slider/slider.component";
+import { Movie } from 'src/app/shared/models/movies/movie.model';
 
 @Component({
   selector: 'app-actor-details',
@@ -29,6 +30,10 @@ export class ActorDetailsPage implements OnInit {
     this.actorId = this.route.snapshot.paramMap.get('id') || '';
     this.actor = this.actorService.getActorById(this.actorId) || null;
     console.log(this.actor)
+  }
+
+  onCardClick(actor: Actor | Movie) {
+    this.navController.navigateForward(['/actors', actor.id]);
   }
 
   onMovieClick(movieId: string) {

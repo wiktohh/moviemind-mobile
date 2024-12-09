@@ -9,6 +9,7 @@ import {register} from 'swiper/element/bundle';
 import { SliderComponent } from "../../core/components/slider/slider.component";
 import { addIcons } from 'ionicons';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 register()
 
@@ -28,10 +29,19 @@ export class HomePage implements OnInit {
   constructor(
     private moviesService: MoviesServiceService,
     private actorsService: ActorsService, 
+    private router: Router,
     private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.movies = this.moviesService.getMovies()
     this.actors = this.actorsService.getActors()
+  }
+
+  onCardClick(el: Movie | Actor) {
+    if ('poster' in el) {
+      this.router.navigate(['/movies', el.id])
+    } else {
+      this.router.navigate(['/actors', el.id])
+    }
   }
 }

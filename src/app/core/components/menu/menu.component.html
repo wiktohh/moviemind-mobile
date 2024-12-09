@@ -11,14 +11,26 @@
     <ion-list class="h-full relative">
       <ion-menu-toggle>
         <ion-item lines="none" routerLink="/tabs/movies">
-          <ion-icon name="business" slot="start"></ion-icon>
+          <ion-icon name="film" slot="start"></ion-icon>
           <ion-label>{{ 'moviePage.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item lines="none" routerLink="/tabs/actors">
-          <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+          <ion-icon name="people" slot="start"></ion-icon>
           <ion-label>{{ 'actorsPage.title' | translate }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/tabs/favourites">
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <ion-label>Ulubione</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/tabs/watch-list">
+          <ion-icon name="time" slot="start"></ion-icon>
+          <ion-label>Watch lista</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>

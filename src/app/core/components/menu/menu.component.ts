@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
-import { exit, settings } from 'ionicons/icons';
+import { exit, film, heart, people, settings, time } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class MenuComponent {
   isLoggedIn: boolean = false;
 
   constructor(private translate: TranslateService, private authService: AuthService, private router: Router) {
-    addIcons({ exit, settings });
+    addIcons({ exit, settings, heart, time, film, people });
     this.isLoggedIn = this.authService.isAuthenticated;
    }
 

@@ -19,9 +19,7 @@ export class SliderComponent {
   @Input() width: number = 150;
   @Input() slidesPerView = 2.5;
 
-  constructor(private router: Router) {
-    console.log(this.data);
-   }
+  constructor(private router: Router) {}
 
   isMovie(el: Movie | Actor): el is Movie {
     return (el as Movie).poster !== undefined;

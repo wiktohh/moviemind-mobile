@@ -14,7 +14,7 @@ import { SliderComponent } from "../../core/components/slider/slider.component";
   templateUrl: './actor-details.page.html',
   styleUrls: ['./actor-details.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonList, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SliderComponent],
+  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SliderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ActorDetailsPage implements OnInit {

@@ -28,10 +28,16 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle class="absolute bottom-12 left-[50%] transform translate-x-[-50%]">
-        <ion-button class="w-[180px]" color="danger" lines="none" button>
+        <ion-button *ngIf="isLoggedIn; else isGuest" (click)="logout()" class="w-[180px]" color="danger" lines="none" button>
           <ion-icon name="exit" slot="start"></ion-icon>
           <ion-label>{{ 'logout' | translate }}</ion-label>
         </ion-button>
+        <ng-template #isGuest>
+          <ion-button (click)="login()" class="w-[180px]" color="primary" lines="none" button>
+            <ion-icon name="exit" slot="start"></ion-icon>
+            <ion-label>Zaloguj się</ion-label>
+          </ion-button>
+        </ng-template>
       </ion-menu-toggle>
     </ion-list>
   </ion-content>

@@ -12,5 +12,13 @@ export const routes: Routes = [
   {
     path: 'actors/:id',
     loadComponent: () => import('./features/actor-details/actor-details.page').then( m => m.ActorDetailsPage)
+  },  {
+    path: 'login',
+    loadComponent: () => import('./features/login/login.page').then( m => m.LoginPage)
   },
+  {
+    path: 'register',
+    loadComponent: () => import('./features/register/register.page').then( m => m.RegisterPage)
+  },
+
 ];

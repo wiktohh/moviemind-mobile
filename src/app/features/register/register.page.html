@@ -1,0 +1,30 @@
+<ion-content class="w-screen h-screen flex justify-center items-center overflow-hidden">
+  <form class="w-full h-2/3 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <h1 class="text-2xl my-4">Zarejestruj się!</h1>
+    <ion-input
+    label="Login"
+    labelPlacement="floating"
+    type="text"
+    formControlName="login"
+  ></ion-input>
+    <ion-input
+      label="Email"
+      labelPlacement="floating"
+      type="email"
+      formControlName="email"
+    ></ion-input>
+    <ion-input
+      label="Hasło"
+      labelPlacement="floating"
+      type="password"
+      formControlName="password"
+    ></ion-input>
+    <ion-button fill="clear" (click)="goToLogin()">
+      Masz już konto? Zaloguj się
+    </ion-button>
+    <ion-button class="submitBtn" type="submit" [disabled]="registerForm.invalid">
+      Zarejestruj się
+    </ion-button>
+    <ion-button (click)="continueAsGuest()" class="absolute bottom-24" fill="outline" >Kontunuuj jako gość</ion-button>
+  </form>
+</ion-content>

@@ -32,6 +32,16 @@ export const routes: Routes = [
           import('../settings/settings.page').then((m) => m.SettingsPage),
       },
       {
+        path: 'favourites',
+        loadComponent: () =>
+          import('../favourites/favourites.page').then((m) => m.FavouritesPage),
+      },
+      {
+        path: 'watch-list',
+        loadComponent: () =>
+          import('../watch-list/watch-list.page').then((m) => m.WatchListPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',

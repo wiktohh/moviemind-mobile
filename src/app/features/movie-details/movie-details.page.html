@@ -69,6 +69,17 @@
   </div>
   </div>
 
+  <div class="flex justify-center gap-4 my-4">
+    <ion-button expand="block" color="primary" (click)="addToFavorites()">
+      <ion-icon name="heart" slot="start"></ion-icon>
+      Dodaj do ulubionych
+    </ion-button>
+    <ion-button expand="block" color="secondary" (click)="addToWatchlist()">
+      <ion-icon name="bookmark" slot="start"></ion-icon>
+      Dodaj do Watchlisty
+    </ion-button>
+  </div>
+
   <h2 class="text-center text-2xl mt-4">Aktorzy</h2>
   <swiper-container [slidesPerView] = '2.5' [loop]="true">
     <swiper-slide *ngFor="let actor of movie!.actors">

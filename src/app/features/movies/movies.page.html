@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-segment (ionChange)="onFilterUpdate($event)" >
+  <!-- <ion-segment (ionChange)="onFilterUpdate($event)" >
     <ion-segment-button value="best">
       <ion-label>{{ 'moviePage.best' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="worst">
       <ion-label>{{ 'moviePage.worst' | translate }}</ion-label>
     </ion-segment-button>
-  </ion-segment>
+  </ion-segment> -->
   <!-- <ion-list>
     <ion-item *ngFor="let movie of movies" class="py-4 w-full flex items-center">
         <img [src]="movie.poster" class="w-1/4" />
@@ -34,9 +34,19 @@
       </div>
     </ion-item>
   </ion-list> -->
+  <div class="flex justify-between">
+    <!-- <ion-button fill="clear" class="px-4" id="sort-modal"><ion-icon class="mr-4" name="filter-outline"></ion-icon>Sortuj</ion-button> -->
+     <ion-select class="sortSelect" [interfaceOptions]="customModalOptions" interface="modal" class="px-4" aria-label="Sortuj" placeholder="Sortuj" (ionChange)="sortMovies($event.detail.value)">
+      <ion-select-option value="best">{{ 'moviePage.best' | translate }}</ion-select-option>
+      <ion-select-option value="worst">{{ 'moviePage.worst' | translate }}</ion-select-option>
+      <ion-select-option value="newest">{{ 'moviePage.newest' | translate }}</ion-select-option>
+      <ion-select-option value="oldest">{{ 'moviePage.oldest' | translate }}</ion-select-option>
+    </ion-select>
+    <ion-button fill="clear" class="px-4" id="filter-modal"><ion-icon class="mr-4" name="funnel-outline"></ion-icon>Filtruj</ion-button>
+  </div>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let movie of movies">
+      <ion-col size="6" *ngFor="let movie of filteredMovies">
         <ion-card (click)="goToMovieDetails(movie.id)" class="rounded-lg h-[400px]" >
           <img class="w-[200px] h-4/6" [src]="movie.poster" />
           <ion-card-header class="h-2/6 px-2 py-2 flex flex-col justify-between">
@@ -50,5 +60,73 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
+
+  <ion-modal #modal trigger="filter-modal" [initialBreakpoint]="0.75" [breakpoints]="[0.5, 0.75, 1]">
+      <ion-content>
+        <form>
+          <h3 class="my-4 text-center text-xl">Kategorie</h3>
+          <ion-list>
+            <ion-item *ngFor="let category of categories">
+              <ion-label>{{ category }}</ion-label>
+              <ion-checkbox
+                [checked]="filters.categories[category]"
+                (ionChange)="onCategoryChange(category, $event.detail.checked)"
+              ></ion-checkbox>
+            </ion-item>
+          </ion-list>
+          <h3 class="my-2 text-center text-xl">Minimalna ocena filmu</h3>
+            <ion-list class="flex justify-between">
+              <ion-item *ngFor="let mark of marks">
+                <ion-label [for]="mark">{{ mark }}</ion-label>
+                <ion-checkbox [id]="mark" slot="end" (ionChange)="onRatingChange(mark)" [checked]="false" name="{{mark}}"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          <h3 class="my-2 text-center text-xl">Rok produkcji</h3>
+          <div class="flex justify-between">
+            <ion-item>
+              <ion-input
+                class="text-black text-center"
+                type="number"
+                (ionChange)="onYearStartChange($event.detail.value)"
+                min="1900"
+                name="yearStart"
+                placeholder="Podaj rok początkowy"
+              ></ion-input>
+            </ion-item>
+            <ion-item>-</ion-item>
+            <ion-item>
+              <ion-input
+                class="text-black text-center"
+                type="number"
+                (ionChange)="onYearEndChange($event.detail.value)"
+                name="yearEnd"
+                [max]="getCurrentYear()"
+                placeholder="Podaj rok końcowy"
+              ></ion-input>
+            </ion-item>
+          </div>
+          <ion-button (click)="applyFilters()" class="my-12" expand="block">Zastosuj</ion-button>
+        </form>
+      </ion-content>
+  </ion-modal>
+
+  <ion-modal trigger="sort-modal" [initialBreakpoint]="0.5" [breakpoints]="[0.3, 0.5, 0.7]">
+    <ion-content>
+      <ion-list>
+        <ion-item button (click)="sortMovies('best')">
+          <ion-label>Najlepszych</ion-label>
+        </ion-item>
+        <ion-item button (click)="sortMovies('worst')">
+          <ion-label>Najgorszych</ion-label>
+        </ion-item>
+        <ion-item button (click)="sortMovies('newest')">
+          <ion-label>Najnowszych</ion-label>
+        </ion-item>
+        <ion-item button (click)="sortMovies('oldest')">
+          <ion-label>Najstarszych</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-modal>
+
 </ion-content>

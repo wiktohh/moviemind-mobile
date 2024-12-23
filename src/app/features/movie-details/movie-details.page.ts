@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { addIcons } from 'ionicons';
-import { add, addOutline, calendar, earth, film, star, starOutline, time, videocam } from 'ionicons/icons';
+import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -27,7 +27,7 @@ export class MovieDetailsPage implements OnInit {
   selectedActor: any = null;
 
   constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router) { 
-    addIcons({videocam,earth,film,time,calendar,star,add,starOutline,addOutline});
+    addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
   }
 
   ngOnInit() {
@@ -36,6 +36,14 @@ export class MovieDetailsPage implements OnInit {
     const movie = this.movieService.getMovieById(this.movieId);
     this.movie = movie !== undefined ? movie : null;
     console.log(this.movie)
+  }
+
+  addToFavorites(): void {
+    console.log(`Dodano film ${this.movie?.title} do ulubionych.`);
+  }
+
+  addToWatchlist(): void {
+    console.log(`Dodano film ${this.movie?.title} do listy do obejrzenia.`);
   }
 
   rateMovie(value: number): void {

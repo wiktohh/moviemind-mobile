@@ -31,7 +31,13 @@ export class RegisterPage {
 
   onRegister() {
     if (this.registerForm.valid) {
-      console.log('Register:', this.registerForm.value);
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (res: any) => {
+          this.goToLogin();
+        },
+        error: (err) => {
+          console.error('Błąd rejestracji:', err);
+        }});
     } else {
       console.log('Invalid register form');
     }

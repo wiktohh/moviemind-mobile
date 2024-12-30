@@ -17,13 +17,21 @@ export class LoginPage {
   constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
       console.log('Login:', this.loginForm.value);
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (res: any) => {
+          this.router.navigate(['/tabs/home']);
+        },
+        error: (err) => {
+          console.error('Błąd logowania:', err);
+        }
+      });
     } else {
       console.log('Invalid login form');
     }

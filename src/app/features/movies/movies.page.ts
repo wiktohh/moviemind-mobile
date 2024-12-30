@@ -49,7 +49,7 @@ export class MoviesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true;
+   this.loading = true;
    this.movies = this.moviesService.getMovies()
     this.filteredMovies = this.movies;
     this.filters = {

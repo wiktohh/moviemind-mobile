@@ -21,13 +21,13 @@
           <ion-label>{{ 'actorsPage.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="user">
         <ion-item lines="none" routerLink="/tabs/favourites">
           <ion-icon name="heart" slot="start"></ion-icon>
           <ion-label>Ulubione</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="user">
         <ion-item lines="none" routerLink="/tabs/watch-list">
           <ion-icon name="time" slot="start"></ion-icon>
           <ion-label>Watch lista</ion-label>
@@ -40,7 +40,7 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle class="absolute bottom-12 left-[50%] transform translate-x-[-50%]">
-        <ion-button *ngIf="isLoggedIn; else isGuest" (click)="logout()" class="w-[180px]" color="danger" lines="none" button>
+        <ion-button *ngIf="isLoggedIn && user; else isGuest" (click)="logout()" class="w-[180px]" color="danger" lines="none" button>
           <ion-icon name="exit" slot="start"></ion-icon>
           <ion-label>{{ 'logout' | translate }}</ion-label>
         </ion-button>

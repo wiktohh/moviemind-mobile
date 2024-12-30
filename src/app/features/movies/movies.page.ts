@@ -6,11 +6,13 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel
 import { IonSegmentCustomEvent } from '@ionic/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
-import { star, funnelOutline, filterOutline } from 'ionicons/icons';
+import { star, funnelOutline, filterOutline, chevronExpandOutline } from 'ionicons/icons';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
+import { FilterModalComponent } from './filter-modal/filter-modal.component';
 
 @Component({
   selector: 'app-movies',
@@ -18,6 +20,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['movies.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ModalController],
   imports: [TranslateModule, IonCardHeader, IonCardContent, IonCardSubtitle, IonCardTitle, IonCard, IonCol, IonRow, IonGrid, IonSegmentButton, IonSegment, IonText, IonImg, IonAvatar, IonIcon, IonButton, IonButtons, IonBackButton, IonLabel, IonItem, IonList, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class MoviesPage implements OnInit {
@@ -36,10 +39,12 @@ export class MoviesPage implements OnInit {
     breakpoints: [0, 0.3],
     initialBreakpoint: 0.3,
   };
+  isModalOpen = false;
 
 
-  constructor(private moviesService: MoviesServiceService, private router: Router, private fb: FormBuilder) {
-    addIcons({funnelOutline,star, filterOutline});
+
+  constructor(private moviesService: MoviesServiceService, private router: Router, private fb: FormBuilder, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController) {
+    addIcons({chevronExpandOutline,funnelOutline,star,filterOutline});
   }
 
   ngOnInit() {
@@ -72,6 +77,48 @@ export class MoviesPage implements OnInit {
     console.log('Wybrano sortowanie:', criteria);
   }
 
+  onSortClick() {
+    this.actionSheetCtrl.create({
+      header: 'Sortuj',
+      buttons: [
+        {
+          text: 'Najlepiej oceniane',
+          handler: () => this.sortMovies('best'),
+        },
+        {
+          text: 'Najgorzej oceniane',
+          handler: () => this.sortMovies('worst'),
+        },
+        {
+          text: 'Najnowsze',
+          handler: () => this.sortMovies('newest'),
+        },
+        {
+          text: 'Najstarsze',
+          handler: () => this.sortMovies('oldest'),
+        },
+        {
+          text: 'Anuluj',
+          role: 'cancel',
+        },
+      ],
+    }).then(actionSheet => actionSheet.present());
+  }
+
+  onFilterClick() {
+    this.modalCtrl.create({
+      component: FilterModalComponent,
+      componentProps: {filters2: this.filters},
+    }).then(modalEl => {
+      modalEl.present()
+      return modalEl.onDidDismiss();
+    }).then(resultData => {
+      console.log(resultData.data, resultData.role);
+      this.filters = resultData.data;
+      this.applyFilters();
+    });
+  }
+
   onCategoryChange(category: string, isChecked: boolean) {
     this.filters.categories[category] = isChecked;
     console.log('Kategorie po zmianie:', this.filters.categories);
@@ -92,7 +139,7 @@ export class MoviesPage implements OnInit {
     console.log('Rok końcowy po zmianie:', this.filters.yearEnd);
   }
 
-  async applyFilters() {
+  applyFilters() {
     this.filteredMovies = this.movies.filter(movie => {
       const isInYearRange =
         (!this.filters.yearStart || +movie.year >= this.filters.yearStart) &&
@@ -110,10 +157,6 @@ export class MoviesPage implements OnInit {
   
       return isInYearRange && matchesCategory && matchesRating;
     });
-  
-    console.log('Zastosowane filtry:', this.filters);
-    console.log('Wynik filtrowania:', this.filteredMovies);
-    this.modal.dismiss(this.filters, 'confirm');
   }
 
   goToMovieDetails(movieId: string) {

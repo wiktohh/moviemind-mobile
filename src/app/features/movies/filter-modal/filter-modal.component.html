@@ -1,0 +1,24 @@
+  <ion-content>
+    <form class="">
+      <h3 class="my-4 text-center text-xl">Kategorie</h3>
+      <ion-list>
+        <ion-item *ngFor="let category of categories">
+          <ion-label>{{ category }}</ion-label>
+          <ion-checkbox
+            [checked]="filters.categories[category]"
+            (ionChange)="onCategoryChange(category, $event.detail.checked)"
+          ></ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <h3 class="my-2 text-center text-xl">Minimalna ocena filmu</h3>
+        <ion-list class="flex justify-between">
+          <ion-item *ngFor="let mark of marks">
+            <ion-label [for]="mark">{{ mark }}</ion-label>
+            <ion-checkbox [id]="mark" slot="end" [checked]="filters.rating === +mark" (ionChange)="onRatingChange(mark)" name="{{mark}}"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      <ion-button (click)="apply()" class="my-12 mx-auto" expand="block">Zastosuj</ion-button>
+
+      <ion-button (click)="cancel()" class="absolute bottom-12 w-full left-1/2 translate-x-[-50%]"  fill="outline" color="danger" expand="block">Anuluj</ion-button>
+    </form>
+  </ion-content>

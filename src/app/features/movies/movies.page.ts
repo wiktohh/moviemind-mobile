@@ -40,6 +40,7 @@ export class MoviesPage implements OnInit {
     initialBreakpoint: 0.3,
   };
   isModalOpen = false;
+  loading = false;
 
 
 
@@ -48,6 +49,7 @@ export class MoviesPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
    this.movies = this.moviesService.getMovies()
     this.filteredMovies = this.movies;
     this.filters = {
@@ -56,9 +58,11 @@ export class MoviesPage implements OnInit {
       yearStart: null,
       yearEnd: null,
     };
+    this.loading = false;
   }
 
   sortMovies(criteria: string) {
+    this.loading = true;
     switch (criteria) {
       case 'best':
         this.filteredMovies = this.movies.sort((a, b) => b.rating - a.rating);
@@ -73,6 +77,7 @@ export class MoviesPage implements OnInit {
         this.filteredMovies = this.movies.sort((a, b) => +a.year - +b.year);
         break;
     }
+    this.loading = false;
 
     console.log('Wybrano sortowanie:', criteria);
   }
@@ -115,7 +120,9 @@ export class MoviesPage implements OnInit {
     }).then(resultData => {
       console.log(resultData.data, resultData.role);
       this.filters = resultData.data;
-      this.applyFilters();
+      if(resultData.role === 'confirm'){
+        this.applyFilters();
+      }
     });
   }
 
@@ -140,6 +147,7 @@ export class MoviesPage implements OnInit {
   }
 
   applyFilters() {
+    this.loading = true;
     this.filteredMovies = this.movies.filter(movie => {
       const isInYearRange =
         (!this.filters.yearStart || +movie.year >= this.filters.yearStart) &&
@@ -157,6 +165,7 @@ export class MoviesPage implements OnInit {
   
       return isInYearRange && matchesCategory && matchesRating;
     });
+    this.loading = false;
   }
 
   goToMovieDetails(movieId: string) {

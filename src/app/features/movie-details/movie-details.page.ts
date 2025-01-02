@@ -25,6 +25,8 @@ export class MovieDetailsPage implements OnInit {
   stars = [1, 2, 3, 4, 5];
   isModalActorOpen = false;
   selectedActor: any = null;
+  isFavorite = false;
+  isWatchlist = false;
 
   constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router) { 
     addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
@@ -39,10 +41,12 @@ export class MovieDetailsPage implements OnInit {
   }
 
   addToFavorites(): void {
+    this.isFavorite = !this.isFavorite;
     console.log(`Dodano film ${this.movie?.title} do ulubionych.`);
   }
 
   addToWatchlist(): void {
+    this.isWatchlist = !this.isWatchlist;
     console.log(`Dodano film ${this.movie?.title} do listy do obejrzenia.`);
   }
 

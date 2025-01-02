@@ -70,13 +70,11 @@
   </div>
 
   <div class="flex justify-center gap-4 my-4">
-    <ion-button expand="block" color="primary" (click)="addToFavorites()">
-      <ion-icon name="heart" slot="start"></ion-icon>
-      Dodaj do ulubionych
+    <ion-button class="flex justify-center items-center bg-gray-500 rounded-xl" fill="clear" expand="block" (click)="addToFavorites()">
+      <ion-icon class="w-8 h-8" [class]="isFavorite ? 'text-red-500' : 'text-white' " name="heart"></ion-icon>
     </ion-button>
-    <ion-button expand="block" color="secondary" (click)="addToWatchlist()">
-      <ion-icon name="bookmark" slot="start"></ion-icon>
-      Dodaj do Watchlisty
+    <ion-button expand="block" class="flex justify-center items-center bg-gray-500 rounded-xl" fill="clear" (click)="addToWatchlist()">
+      <ion-icon class="w-8 h-8" [class]="isWatchlist ? 'text-yellow-500' : 'text-white' " name="bookmark"></ion-icon>
     </ion-button>
   </div>
 

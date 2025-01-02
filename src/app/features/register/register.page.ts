@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class RegisterPage {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private toastService: ToastService) {
     this.registerForm = this.fb.group({
       login: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -33,11 +34,14 @@ export class RegisterPage {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: (res: any) => {
+          this.toastService.success('Zarejestrowano pomyślnie');
           this.goToLogin();
         },
         error: (err) => {
+          this.toastService.failed('Błąd rejestracji');
           console.error('Błąd rejestracji:', err);
-        }});
+        },
+      })
     } else {
       console.log('Invalid register form');
     }

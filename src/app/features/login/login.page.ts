@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,11 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class LoginPage {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router, 
+    private auth: AuthService,
+    private toastService: ToastService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],
@@ -26,9 +31,11 @@ export class LoginPage {
       console.log('Login:', this.loginForm.value);
       this.auth.login(this.loginForm.value).subscribe({
         next: (res: any) => {
+          this.toastService.success('Zalogowano pomyślnie');
           this.router.navigate(['/tabs/home']);
         },
         error: (err) => {
+          this.toastService.failed('Błąd logowania');
           console.error('Błąd logowania:', err);
         }
       });

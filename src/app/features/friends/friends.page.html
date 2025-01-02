@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      Znajomi
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment value="all" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="all">
+      <ion-label>Wszyscy</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pending">
+      <ion-label>Oczekujące</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="add">
+      <ion-label>Dodaj znajomego</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="segment === 'all'">
+    <app-friends-list></app-friends-list>
+  </div>
+  <div *ngIf="segment === 'pending'">
+    <app-pending-friends-list></app-pending-friends-list>
+  </div>
+  <div *ngIf="segment === 'add'">
+    <app-add-friend></app-add-friend>
+  </div>
+</ion-content>

@@ -1,0 +1,24 @@
+<div>
+  <ion-searchbar
+    class="z-20"
+    [(ngModel)]="searchFriend"
+    (ionInput)="onSearch()"
+    placeholder="Wyszukaj użytkownika"
+  ></ion-searchbar>
+
+  <ion-list *ngIf="filteredUsers.length > 0">
+    <ion-item *ngFor="let user of filteredUsers">
+      <ion-label>
+        <p>{{ user.name }}</p>
+        <p>{{ user.email }}</p>
+      </ion-label>
+      <ion-button slot="end" (click)="addFriend(user)">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="searchFriend && filteredUsers.length === 0" class="no-results">
+    <ion-text>Brak wyników wyszukiwania.</ion-text>
+  </div>
+</div>

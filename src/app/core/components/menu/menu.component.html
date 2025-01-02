@@ -33,6 +33,12 @@
           <ion-label>Watch lista</ion-label>
         </ion-item>
       </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="user">
+        <ion-item lines="none" routerLink="/tabs/friends">
+          <ion-icon name="people" slot="start"></ion-icon>
+          <ion-label>Znajomi</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item lines="none" routerLink="/tabs/settings">
           <ion-icon name="settings" slot="start"></ion-icon>

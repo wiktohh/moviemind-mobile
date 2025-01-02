@@ -1,0 +1,14 @@
+<ion-list>
+  <ion-item *ngFor="let friend of friends">
+    <ion-avatar slot="start">
+      <img [src]="friend.avatar" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ friend.name }}</h2>
+      <p>{{ friend.status }}</p>
+    </ion-label>
+    <ion-button class="w-8 h-8" color="danger" slot="end" (click)="removeFriend(friend)">
+      <ion-icon name="trash" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-list>

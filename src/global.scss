@@ -68,6 +68,10 @@ ion-header {
     --background: var(--background-color);
   }
 
+  .toast-danger {
+    --background: #ee5e6a !important;
+  }
+
 // ion-header ion-toolbar ion-buttons[slot="start"],
 // ion-header ion-toolbar ion-buttons[slot="end"] {
 //   position: relative; /* Zachowaj standardowe wyrównanie */

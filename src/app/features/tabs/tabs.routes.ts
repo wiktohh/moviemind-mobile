@@ -42,6 +42,10 @@ export const routes: Routes = [
           import('../watch-list/watch-list.page').then((m) => m.WatchListPage),
       },
       {
+        path: 'friends',
+        loadComponent: () => import('../friends/friends.page').then( m => m.FriendsPage)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',

@@ -9,13 +9,14 @@ import { addIcons } from 'ionicons';
 import { person, personOutline } from 'ionicons/icons';
 import { SliderComponent } from "../../core/components/slider/slider.component";
 import { Movie } from 'src/app/shared/models/movies/movie.model';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-actor-details',
   templateUrl: './actor-details.page.html',
   styleUrls: ['./actor-details.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SliderComponent],
+  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SliderComponent, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ActorDetailsPage implements OnInit {

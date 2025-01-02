@@ -17,7 +17,9 @@
             <ion-card-header>
               <ion-card-title>{{ actors[0].firstName }} {{ actors[0].lastName }}</ion-card-title>
               <ion-card-subtitle
-                >{{ actors[0].age }} lat</ion-card-subtitle
+                [translate]="'actors.yo'"
+                [translateParams]="{ age: actors[0].age }"
+              ></ion-card-subtitle
               >
             </ion-card-header>
           </ion-card>

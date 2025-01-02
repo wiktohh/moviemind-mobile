@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonButton, IonIcon, IonAvatar, IonImg, IonText, IonSegment, IonSegmentButton, SegmentChangeEventDetail, IonGrid, IonRow, IonCol, IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonCardHeader } from '@ionic/angular/standalone';
 import { IonSegmentCustomEvent } from '@ionic/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { star, funnelOutline, filterOutline, chevronExpandOutline } from 'ionicons/icons';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
@@ -44,7 +44,7 @@ export class MoviesPage implements OnInit {
 
 
 
-  constructor(private moviesService: MoviesServiceService, private router: Router, private fb: FormBuilder, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController) {
+  constructor(private moviesService: MoviesServiceService, private router: Router, private fb: FormBuilder, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController, private translate: TranslateService) {
     addIcons({chevronExpandOutline,funnelOutline,star,filterOutline});
   }
 
@@ -84,26 +84,26 @@ export class MoviesPage implements OnInit {
 
   onSortClick() {
     this.actionSheetCtrl.create({
-      header: 'Sortuj',
+      header: this.translate.instant('sort.header'),
       buttons: [
         {
-          text: 'Najlepiej oceniane',
+          text: this.translate.instant('sort.best'),
           handler: () => this.sortMovies('best'),
         },
         {
-          text: 'Najgorzej oceniane',
+          text: this.translate.instant('sort.worst'),
           handler: () => this.sortMovies('worst'),
         },
         {
-          text: 'Najnowsze',
+          text: this.translate.instant('sort.newest'),
           handler: () => this.sortMovies('newest'),
         },
         {
-          text: 'Najstarsze',
+          text: this.translate.instant('sort.oldest'),
           handler: () => this.sortMovies('oldest'),
         },
         {
-          text: 'Anuluj',
+          text: this.translate.instant('sort.cancel'),
           role: 'cancel',
         },
       ],

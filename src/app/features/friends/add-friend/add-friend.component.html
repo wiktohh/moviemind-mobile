@@ -3,7 +3,7 @@
     class="z-20"
     [(ngModel)]="searchFriend"
     (ionInput)="onSearch()"
-    placeholder="Wyszukaj użytkownika"
+    [placeholder]="'friends.addFriendPlaceholder' | translate"
   ></ion-searchbar>
 
   <ion-list *ngIf="filteredUsers.length > 0">
@@ -19,6 +19,6 @@
   </ion-list>
 
   <div *ngIf="searchFriend && filteredUsers.length === 0" class="no-results">
-    <ion-text>Brak wyników wyszukiwania.</ion-text>
+    <ion-text>{{ 'friends.notFound' | translate }}</ion-text>
   </div>
 </div>

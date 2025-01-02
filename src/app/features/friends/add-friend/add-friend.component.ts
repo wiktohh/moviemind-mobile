@@ -5,13 +5,14 @@ import { debounceTime } from 'rxjs';
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonSearchbar, IonText, IonTitle, IonToolbar, IonButton, IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { personAdd } from 'ionicons/icons';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-friend',
   templateUrl: './add-friend.component.html',
   styleUrls: ['./add-friend.component.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule],
+  imports: [IonIcon, IonButton, IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule, TranslateModule],
 })
 export class AddFriendComponent {
   searchFriend: string = '';
@@ -23,7 +24,7 @@ export class AddFriendComponent {
   ];
 
   constructor(private fb: FormBuilder) { 
-    addIcons({personAdd})
+    addIcons({personAdd});
     console.log('AddFriendComponent constructor');
   }
 

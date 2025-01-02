@@ -8,13 +8,14 @@ import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { addIcons } from 'ionicons';
 import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.page.html',
   styleUrls: ['./movie-details.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
+  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MovieDetailsPage implements OnInit {

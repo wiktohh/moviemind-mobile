@@ -4,21 +4,19 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="ion-text-center">
-      Wyszukiwanie
+      {{ 'search.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <!-- Pasek wyszukiwania -->
   <ion-searchbar
     [(ngModel)]="searchTerm"
     (ionInput)="onSearch()"
-    placeholder="Wyszukaj filmy"
+    [placeholder]="'search.search' | translate"
   ></ion-searchbar>
 
-  <!-- Lista wyników -->
   <ion-list *ngIf="filteredMovies.length > 0">
     <ion-item *ngFor="let movie of filteredMovies" (click)="goToDetails(movie.id)">
       <ion-thumbnail slot="start">
@@ -31,8 +29,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- Komunikat, gdy brak wyników -->
   <div *ngIf="searchTerm && filteredMovies.length === 0" class="no-results">
-    <ion-text>Brak wyników wyszukiwania.</ion-text>
+    <ion-text>{{ 'search.noResults' | translate }}</ion-text>
   </div>
 </ion-content>

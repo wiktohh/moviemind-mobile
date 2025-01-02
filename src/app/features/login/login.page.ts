@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { filmOutline } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -12,7 +13,7 @@ import { ToastService } from 'src/app/shared/services/toast/toast.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, ReactiveFormsModule],
+  imports: [IonicModule, FormsModule, ReactiveFormsModule, TranslateModule],
 })
 export class LoginPage {
   loginForm: FormGroup;

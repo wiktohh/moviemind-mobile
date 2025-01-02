@@ -5,13 +5,14 @@ import { MoviesServiceService } from 'src/app/shared/services/movies/movies.serv
 import { IonHeader, IonToolbar, IonTitle, IonItem, IonContent, IonSearchbar, IonList, IonLabel, IonText } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
   standalone: true,
-  imports: [IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule],
+  imports: [IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchPage implements OnInit {

@@ -7,12 +7,97 @@
   "moviePage": {
     "title": "Movies",
     "best": "Best",
-    "worst": "Worst"
+    "worst": "Worst",
+    "categories": "Categories",
+    "minRating": "Minimum Rating",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "noResults": "No movies",
+    "filter": "Filter",
+    "sort": {
+      "header": "Sort",
+      "best": "Best Rated",
+      "worst": "Worst Rated",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "cancel": "Cancel"
+  }
   },
   "actorsPage": {
     "title": "Actors",
     "age": "Age",
-    "movies": "movies"
+    "movies": "movies",
+    "yo": "{{age}} years old"
   },
-  "logout": "Logout"
+  "logout": "Logout",
+  "actorDetails": {
+    "age": "Age",
+    "country": "Country",
+    "biography": "Biography",
+    "filmography": "Filmography"
+  },
+  "favorite": {
+    "title": "Favorites",
+    "empty": "No favorites"
+  },
+  "friends": {
+    "title": "Friends",
+    "all": "All",
+    "pending": "Pending",
+    "addFriend": "Add Friend",
+    "addFriendPlaceholder": "Search for a friend",
+    "notFound": "No results found"
+  },
+  "continueAsGuest": "Continue as Guest",
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "dontHaveAccount": "Don't have an account? Register?"
+  },
+  "register": {
+    "createAccount": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "alreadyHaveAccount": "Already have an account? Login",
+    "signup": "Sign Up"
+  },
+  "movieDetails": {
+    "releaseDate": "Release Date",
+    "country": "Country",
+    "genre": "Genre",
+    "duration": "Duration",
+    "director": "Director",
+    "actors": "Actors",
+    "description": "Description",
+    "noDescription": "No description",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "scoreMovie": "Rate Movie",
+    "scoreActor": "Rate Actor",
+    "addReview": "Add Review"
+  },
+  "search": {
+    "title": "Search",
+    "search": "Search Movies",
+    "noResults": "No results found"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "notifications": "Notifications",
+    "save": "Save",
+    "polish": "Polish",
+    "english": "English"
+  },
+  "watchlist": {
+    "title": "Watchlist",
+    "empty": "No movies in watchlist"
+  }
 }

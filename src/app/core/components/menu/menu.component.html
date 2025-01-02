@@ -24,25 +24,25 @@
       <ion-menu-toggle *ngIf="user">
         <ion-item lines="none" routerLink="/tabs/favourites">
           <ion-icon name="heart" slot="start"></ion-icon>
-          <ion-label>Ulubione</ion-label>
+          <ion-label>{{ 'favorite.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle *ngIf="user">
         <ion-item lines="none" routerLink="/tabs/watch-list">
           <ion-icon name="time" slot="start"></ion-icon>
-          <ion-label>Watch lista</ion-label>
+          <ion-label>{{ 'watchlist.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle *ngIf="user">
         <ion-item lines="none" routerLink="/tabs/friends">
           <ion-icon name="people" slot="start"></ion-icon>
-          <ion-label>Znajomi</ion-label>
+          <ion-label>{{ 'friends.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item lines="none" routerLink="/tabs/settings">
           <ion-icon name="settings" slot="start"></ion-icon>
-          <ion-label>Ustawienia</ion-label>
+          <ion-label>{{ 'settings.title' | translate }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle class="absolute bottom-12 left-[50%] transform translate-x-[-50%]">
@@ -53,7 +53,7 @@
         <ng-template #isGuest>
           <ion-button (click)="login()" class="w-[180px]" color="primary" lines="none" button>
             <ion-icon name="exit" slot="start"></ion-icon>
-            <ion-label>Zaloguj się</ion-label>
+            <ion-label>{{ 'login.title' | translate }}</ion-label>
           </ion-button>
         </ng-template>
       </ion-menu-toggle>

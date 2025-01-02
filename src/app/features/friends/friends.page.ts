@@ -7,13 +7,14 @@ import { trash } from 'ionicons/icons';
 import { FriendsListComponent } from "./friends-list/friends-list.component";
 import { PendingFriendsListComponent } from "./pending-friends-list/pending-friends-list.component";
 import { AddFriendComponent } from "./add-friend/add-friend.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.page.html',
   styleUrls: ['./friends.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonList, IonAvatar, IonItem, IonIcon, IonButton, IonLabel, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FriendsListComponent, PendingFriendsListComponent, AddFriendComponent],
+  imports: [TranslateModule, IonButtons, IonList, IonAvatar, IonItem, IonIcon, IonButton, IonLabel, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FriendsListComponent, PendingFriendsListComponent, AddFriendComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
   
 })

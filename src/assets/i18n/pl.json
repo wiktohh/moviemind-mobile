@@ -7,12 +7,97 @@
   "moviePage": {
     "title": "Filmy",
     "best": "Najlepsze",
-    "worst": "Najgorsze"
+    "worst": "Najgorsze",
+    "categories": "Kategorie",
+    "minRating": "Minimalna ocena",
+    "apply": "Zastosuj",
+    "cancel": "Anuluj",
+    "noResults": "Brak filmów",
+    "filter": "Filtruj",
+    "sort": {
+      "header": "Sortuj",
+      "best": "Najlepiej oceniane",
+      "worst": "Najgorzej oceniane",
+      "newest": "Najnowsze",
+      "oldest": "Najstarsze",
+      "cancel": "Anuluj"
+  }
   },
   "actorsPage": {
     "title": "Aktorzy",
     "age": "Wiek",
-    "movies": "filmów"
+    "movies": "filmów",
+    "yo": "{{age}} lat"
   },
-  "logout": "Wyloguj się"
+  "logout": "Wyloguj się",
+  "actorDetails": {
+    "age": "Wiek",
+    "country": "Kraj",
+    "biography": "Biografia",
+    "filmography": "Filmografia"
+  },
+  "favorite": {
+    "title": "Ulubione",
+    "empty": "Brak ulubionych"
+  },
+  "friends": {
+    "title": "Znajomi",
+    "all": "Wszyscy",
+    "pending": "Oczekujące",
+    "addFriend": "Dodaj znajomego",
+    "addFriendPlaceholder": "Wyszukaj znajomego",
+    "notFound": "Brak wyników wyszukiwania"
+  },
+  "continueAsGuest": "Kontynuuj jako gość",
+  "login": {
+    "title": "Zaloguj się",
+    "email": "Email",
+    "password": "Hasło",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "noAccount": "Nie masz konta?",
+    "dontHaveAccount": "Nie masz konta? Zarejestruj się?"
+  },
+  "register": {
+    "createAccount": "Stwórz konto",
+    "email": "Email",
+    "password": "Hasło",
+    "login": "Login",
+    "alreadyHaveAccount": "Masz już konto? Zaloguj się",
+    "signup": "Zarejestruj się"
+  },
+  "movieDetails": {
+    "releaseDate": "Data premiery",
+    "country": "Kraj",
+    "genre": "Gatunek",
+    "duration": "Czas trwania",
+    "director": "Reżyser",
+    "actors": "Aktorzy",
+    "description": "Opis",
+    "noDescription": "Brak opisu",
+    "rating": "Ocena",
+    "reviews": "Recenzje",
+    "scoreMovie": "Oceń film",
+    "scoreActor": "Oceń aktora",
+    "addReview": "Dodaj recenzję"
+  },
+  "search": {
+    "title": "Wyszukiwanie",
+    "search": "Wyszukaj filmy",
+    "noResults": "Brak wyników wyszukiwania"  
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "darkMode": "Tryb ciemny",
+    "notifications": "Powiadomienia",
+    "save": "Zapisz",
+    "polish": "Polski",
+    "english": "Angielski"
+  },
+  "watchlist": {
+    "title": "Lista obejrzanych",
+    "empty": "Brak obejrzanych"
+  }
 }

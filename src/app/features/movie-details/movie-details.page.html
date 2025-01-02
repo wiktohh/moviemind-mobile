@@ -21,7 +21,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="videocam"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Reżyser</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.director' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.director }}</ion-text>
         </div>
       </div>
@@ -29,7 +29,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="earth"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Kraj</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.country' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.country }}</ion-text>
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="film"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Gatunek</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.genre' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.genre }}</ion-text>
         </div>
       </div>
@@ -45,7 +45,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="time"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Długość</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.duration' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.duration }}</ion-text>
         </div>
       </div>
@@ -53,7 +53,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="calendar"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Rok</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.releaseDate' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.year }}</ion-text>
         </div>
       </div>
@@ -61,7 +61,7 @@
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="star"></ion-icon>
         <div class="flex flex-col">
-          <ion-text class="text-sm font-semibold">Ocena</ion-text>
+          <ion-text class="text-sm font-semibold">{{ 'movieDetails.rating' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.rating }} / 10</ion-text>
         </div>
       </div>
@@ -78,7 +78,7 @@
     </ion-button>
   </div>
 
-  <h2 class="text-center text-2xl mt-4">Aktorzy</h2>
+  <h2 class="text-center text-2xl mt-4">{{ 'movieDetails.actors' | translate }}</h2>
   <swiper-container [slidesPerView] = '2.5' [loop]="true">
     <swiper-slide *ngFor="let actor of movie!.actors">
       <ion-card class="relative" (click)="redirectToActor(actor.id)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
@@ -97,7 +97,7 @@
 
   <div class="relative mt-8 mx-8">
     <div class="flex items-center justify-center">
-      <h2 class="text-center text-2xl font-semibold mb-4">User Reviews</h2>
+      <h2 class="text-center text-2xl font-semibold mb-4">{{ 'movieDetails.reviews' | translate }}</h2>
     <ion-button 
       id="open-movie-modal" 
       class="reviewBtn text-black absolute text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full shadow-lg">
@@ -122,7 +122,7 @@
 
   <ion-modal #modal trigger="open-movie-modal" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
     <ion-content class="flex flex-col">
-      <h3 class="my-4 text-2xl text-center">Oceń film</h3>
+      <h3 class="my-4 text-2xl text-center">{{ 'movieDetails.scoreMovie' | translate }}</h3>
       <div class="rating-container flex items-center justify-center gap-2">
         <ion-icon 
           *ngFor="let star of stars; let i = index"
@@ -133,13 +133,13 @@
         </ion-icon>
       </div>
       <ion-textarea rows="7" class="my-2" placeholder="Podziel się swoją opinią (opcjonalnie)"></ion-textarea>
-      <ion-button expand="block"  class="mt-4" (click)="submitReview()">Dodaj recenzję</ion-button>
+      <ion-button expand="block"  class="mt-4" (click)="submitReview()">{{ 'movieDetails.addReview' | translate }}</ion-button>
     </ion-content>
   </ion-modal>
 
   <ion-modal [isOpen]="isModalActorOpen" (willDismiss)="closeActorModal()" [initialBreakpoint]="0.25">
     <ion-content class="flex flex-col">
-      <h3 class="my-4 text-2xl text-center">Oceń rolę aktora</h3>
+      <h3 class="my-4 text-2xl text-center">{{ 'movieDetails.scoreActor' | translate }}</h3>
       <div class="rating-container flex items-center justify-center gap-2">
         <ion-icon 
           *ngFor="let star of stars; let i = index"
@@ -149,7 +149,7 @@
           (click)="rateActor(i + 1)">
         </ion-icon>
       </div>
-      <ion-button expand="block" class="mt-4" (click)="submitActorReview()">Dodaj recenzję</ion-button>
+      <ion-button expand="block" class="mt-4" (click)="submitActorReview()">{{ 'movieDetails.addReview' | translate }}</ion-button>
     </ion-content>
   </ion-modal>
 </ion-content>

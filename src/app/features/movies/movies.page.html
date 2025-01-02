@@ -36,10 +36,10 @@
   </ion-list> -->
   <div class="flex justify-between">
     <!-- <ion-button fill="clear" class="px-4" id="sort-modal"><ion-icon class="mr-4" name="filter-outline"></ion-icon>Sortuj</ion-button> -->
-    <ion-button (click)="onSortClick()" fill="clear" class="px-4">Sortuj<ion-icon name="chevron-expand-outline"></ion-icon></ion-button>
-    <ion-button (click)="onFilterClick()" fill="clear" class="px-4"><ion-icon class="mr-4" name="funnel-outline"></ion-icon>Filtruj</ion-button>
+    <ion-button (click)="onSortClick()" fill="clear" class="px-4">{{ 'moviePage.sort.header' | translate }}<ion-icon name="chevron-expand-outline"></ion-icon></ion-button>
+    <ion-button (click)="onFilterClick()" fill="clear" class="px-4"><ion-icon class="mr-4" name="funnel-outline"></ion-icon>{{ 'moviePage.filter' | translate }}</ion-button>
   </div>
-  <p *ngIf="!loading && filteredMovies.length === 0" class="w-full text-center mx-auto">Brak filmów</p>
+  <p *ngIf="!loading && filteredMovies.length === 0" class="w-full text-center mx-auto">{{ 'moviePage.noResults' | translate }}</p>
   <ion-spinner *ngIf="loading"></ion-spinner>
   <ion-grid *ngIf="!loading && filteredMovies.length > 0">
     <ion-row>

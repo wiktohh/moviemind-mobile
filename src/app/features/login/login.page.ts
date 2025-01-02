@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { filmOutline } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
@@ -20,6 +22,7 @@ export class LoginPage {
     private router: Router, 
     private auth: AuthService,
     private toastService: ToastService) {
+    addIcons({filmOutline})
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],

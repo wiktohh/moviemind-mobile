@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { filmOutline } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
@@ -16,6 +18,7 @@ export class RegisterPage {
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private toastService: ToastService) {
+    addIcons({filmOutline})
     this.registerForm = this.fb.group({
       login: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],

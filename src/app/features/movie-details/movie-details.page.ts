@@ -9,8 +9,9 @@ import { addIcons } from 'ionicons';
 import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { finalize } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import {environment} from '../../../environments/environment';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -33,8 +34,10 @@ export class MovieDetailsPage implements OnInit {
   Genre = Genre;
   loading = false;
   tempMovieImage = environment.tempImage;
+  private authSubscription: Subscription = new Subscription();
+  user: any = null;
 
-  constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router) { 
+  constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
     addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
   }
 
@@ -42,6 +45,11 @@ export class MovieDetailsPage implements OnInit {
     this.loading = true;
     this.movieId = this.route.snapshot.paramMap.get('id') || '';
     console.log(this.movieId)
+    this.authSubscription.add(
+      this.authService.user$.subscribe((user) => {
+        this.user = user;
+      })
+    );
     this.movieService.getMovieById(this.movieId).pipe(finalize(() => this.loading = false)).subscribe({
       next: (movie: Movie) => {
         this.movie = movie;

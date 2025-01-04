@@ -85,7 +85,8 @@
     <swiper-slide *ngFor="let actor of movie!.roles">
       <ion-card class="relative" (click)="redirectToActor(actor.id)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
         <img [style.width.px]="150" [style.height.px]="180" [src]="actor.person.pictureUrl" />
-        <ion-button 
+        <ion-button
+        *ngIf="user" 
         (click)="openActorModal(actor.id); $event.stopPropagation()"
         class="reviewBtn text-black absolute z-50 text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full  shadow-lg">
         +
@@ -101,6 +102,7 @@
     <div class="flex items-center justify-center">
       <h2 class="text-center text-2xl font-semibold mb-4">{{ 'movieDetails.reviews' | translate }}</h2>
     <ion-button 
+      *ngIf="user" 
       id="open-movie-modal" 
       class="reviewBtn text-black absolute text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full shadow-lg">
       +

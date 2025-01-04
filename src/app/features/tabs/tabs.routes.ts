@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { authGuard } from 'src/app/core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -32,18 +33,20 @@ export const routes: Routes = [
           import('../settings/settings.page').then((m) => m.SettingsPage),
       },
       {
-        path: 'favourites',
-        loadComponent: () =>
-          import('../favourites/favourites.page').then((m) => m.FavouritesPage),
-      },
-      {
         path: 'watch-list',
         loadComponent: () =>
           import('../watch-list/watch-list.page').then((m) => m.WatchListPage),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'favorites',
+        loadComponent: () => import('../favorites/favorites.page').then( m => m.FavoritesPage),
+        canActivate: [authGuard],
       },
       {
         path: 'friends',
-        loadComponent: () => import('../friends/friends.page').then( m => m.FriendsPage)
+        loadComponent: () => import('../friends/friends.page').then( m => m.FriendsPage),
+        canActivate: [authGuard],
       },
       {
         path: '',

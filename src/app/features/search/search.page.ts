@@ -12,11 +12,13 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
   standalone: true,
-  imports: [IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule, TranslateModule],
+  imports: [IonText, IonLabel, IonList, IonSearchbar,
+            IonContent, IonItem, IonTitle, IonHeader, 
+            IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchPage implements OnInit {
-  searchTerm: string = ''; // Aktualny tekst w polu wyszukiwania
+  searchTerm: string = '';
   movies: Movie[] = []
 
   filteredMovies: Movie[] = []

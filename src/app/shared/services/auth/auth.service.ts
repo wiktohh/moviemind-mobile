@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) { }
 
   login(user: { email: string; password: string }): Observable<any> {
-    return this.http.post('http://localhost:5074/api/User/signin', user).pipe(
+    return this.http.post(`${environment.apiUrl}User/signin`, user).pipe(
       tap((res: any) => {
         console.log(res);
         this.tokenSubject.next(res.accessToken);

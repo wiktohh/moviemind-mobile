@@ -29,8 +29,8 @@ export class HomePage implements OnInit {
   constructor(
     private moviesService: MoviesServiceService,
     private actorsService: ActorsService, 
-    private router: Router,
-    private translate: TranslateService) {}
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.movies = this.moviesService.getMovies()

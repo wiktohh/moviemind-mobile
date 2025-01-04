@@ -5,14 +5,14 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton 
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-favourites',
-  templateUrl: './favourites.page.html',
-  styleUrls: ['./favourites.page.scss'],
+  selector: 'app-favorites',
+  templateUrl: './favorites.page.html',
+  styleUrls: ['./favorites.page.scss'],
   standalone: true,
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FavouritesPage {
+export class FavoritesPage {
 
   constructor() { }
 

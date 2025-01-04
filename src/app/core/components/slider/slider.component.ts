@@ -15,7 +15,7 @@ import { Movie } from 'src/app/shared/models/movies/movie.model';
 export class SliderComponent {
   @Input() data: any[] = [];
   @Input() height: number = 220;
-  @Input() width: number = 150;
+  @Input() width: number = 125;
   @Input() slidesPerView = 2.5;
   @Output() cardClick = new EventEmitter<Movie | Actor>();
 

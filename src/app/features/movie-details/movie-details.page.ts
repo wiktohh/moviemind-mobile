@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
-import { Movie } from 'src/app/shared/models/movies/movie.model';
+import { Genre, Movie } from 'src/app/shared/models/movies/movie.model';
 import { addIcons } from 'ionicons';
 import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { finalize } from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-movie-details',
@@ -28,17 +30,43 @@ export class MovieDetailsPage implements OnInit {
   selectedActor: any = null;
   isFavorite = false;
   isWatchlist = false;
+  Genre = Genre;
+  loading = false;
+  tempMovieImage = environment.tempImage;
 
   constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router) { 
     addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
   }
 
   ngOnInit() {
+    this.loading = true;
     this.movieId = this.route.snapshot.paramMap.get('id') || '';
     console.log(this.movieId)
-    const movie = this.movieService.getMovieById(this.movieId);
-    this.movie = movie !== undefined ? movie : null;
-    console.log(this.movie)
+    this.movieService.getMovieById(this.movieId).pipe(finalize(() => this.loading = false)).subscribe({
+      next: (movie: Movie) => {
+        this.movie = movie;
+      },
+      error: (error) => {
+        console.log('Error:', error);
+      }
+    })
+  }
+
+  getMovieCountries(): string {
+    return this.movie?.countries?.map(country => country.countryName).join(', ') || '';
+  }
+
+  getMovieDuration(): string {
+    const hours = Math.floor(this.movie!.duration / 60);
+    const minutes = this.movie!.duration % 60;
+    if(hours === 0) {
+      return `${minutes}min`;
+    } else if(hours > 0 && minutes === 0) {
+      return `${hours}h`;
+    } else {
+      return `${hours}h ${minutes}min`;
+    }
+
   }
 
   addToFavorites(): void {

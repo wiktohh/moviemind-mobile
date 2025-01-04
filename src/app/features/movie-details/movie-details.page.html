@@ -11,8 +11,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <img [src]="movie?.poster" />
+<ion-spinner *ngIf="loading"></ion-spinner>
+
+<ion-content *ngIf="!loading" [fullscreen]="true">
+  <img class="object-cover" [src]="movie?.image || tempMovieImage" />
   <div class="mx-8">
     <h1 class="text-4xl my-4 font-semibold text-center">{{ movie?.title }}</h1>
   <p class="text-center">{{ movie?.description }}</p>
@@ -20,17 +22,17 @@
     <div class="mt-6 grid grid-cols-2 gap-x-12 gap-y-4">
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="videocam"></ion-icon>
-        <div class="flex flex-col">
+        <!-- <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.director' | translate }}</ion-text>
           <ion-text class="text-sm">{{ movie?.director }}</ion-text>
-        </div>
+        </div> -->
       </div>
       
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="earth"></ion-icon>
         <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.country' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.country }}</ion-text>
+          <ion-text class="text-sm">{{getMovieCountries() }}</ion-text>
         </div>
       </div>
     
@@ -38,7 +40,7 @@
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="film"></ion-icon>
         <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.genre' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.genre }}</ion-text>
+          <ion-text class="text-sm">{{ Genre[movie!.genre] }}</ion-text>
         </div>
       </div>
   
@@ -46,7 +48,7 @@
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="time"></ion-icon>
         <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.duration' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.duration }}</ion-text>
+          <ion-text class="text-sm">{{ getMovieDuration() }}</ion-text>
         </div>
       </div>
     
@@ -54,7 +56,7 @@
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="calendar"></ion-icon>
         <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.releaseDate' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.year }}</ion-text>
+          <ion-text class="text-sm">{{ movie!.releaseDate.split('T')[0] }}</ion-text>
         </div>
       </div>
     
@@ -62,7 +64,7 @@
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="star"></ion-icon>
         <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.rating' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.rating }} / 10</ion-text>
+          <ion-text class="text-sm">{{ movie?.score }} / 5</ion-text>
         </div>
       </div>
     </div>  
@@ -80,16 +82,16 @@
 
   <h2 class="text-center text-2xl mt-4">{{ 'movieDetails.actors' | translate }}</h2>
   <swiper-container [slidesPerView] = '2.5' [loop]="true">
-    <swiper-slide *ngFor="let actor of movie!.actors">
+    <swiper-slide *ngFor="let actor of movie!.roles">
       <ion-card class="relative" (click)="redirectToActor(actor.id)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
-        <img [style.width.px]="150" [style.height.px]="180" [src]="actor.img" />
+        <img [style.width.px]="150" [style.height.px]="180" [src]="actor.person.pictureUrl" />
         <ion-button 
         (click)="openActorModal(actor.id); $event.stopPropagation()"
         class="reviewBtn text-black absolute z-50 text-xl top-0 right-0 p-0 w-10 h-10 translate-y-[-20%] flex items-center justify-center rounded-full  shadow-lg">
         +
       </ion-button>
         <ion-card-header class="h-[60px] px-2 py-2 flex flex-col justify-between">
-            <ion-card-title class="text-sm text-center">{{ actor.firstName}} {{ actor.lastName }}</ion-card-title>
+            <ion-card-title class="text-sm text-center">{{ actor.person.firstName}} {{ actor.person.lastName }}</ion-card-title>
         </ion-card-header>
       </ion-card>
     </swiper-slide>
@@ -107,8 +109,7 @@
     <ion-list>
       <ion-item class="my-2" *ngFor="let review of movie?.reviews">
         <div>
-          <h3 class="text-lg font-semibold">{{ review.user }}</h3>
-          <p class="text-sm text-gray-500">{{ review.date }}</p>
+          <h3 class="text-lg font-semibold">{{ review.user.login }}</h3>
           <ion-text>{{ review.comment }}</ion-text>
         </div>
         <div slot="end" class="flex items-center gap-1">

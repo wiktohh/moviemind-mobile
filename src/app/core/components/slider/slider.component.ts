@@ -23,7 +23,7 @@ export class SliderComponent {
   constructor(private router: Router) {}
 
   isMovie(el: Movie | Actor): el is Movie {
-    return (el as Movie).poster !== undefined;
+    return (el as Movie).image !== undefined;
   }
 
   redirectToPage(el: Movie | Actor) {

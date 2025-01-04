@@ -7,12 +7,14 @@ import { IonSegmentCustomEvent } from '@ionic/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { star, funnelOutline, filterOutline, chevronExpandOutline } from 'ionicons/icons';
-import { Movie } from 'src/app/shared/models/movies/movie.model';
+import { Genre, Movie } from 'src/app/shared/models/movies/movie.model';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
+import { finalize } from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-movies',
@@ -41,7 +43,8 @@ export class MoviesPage implements OnInit {
   };
   isModalOpen = false;
   loading = false;
-
+  Genre = Genre;
+  tempMovieImage = environment.tempImage;
 
 
   constructor(private moviesService: MoviesServiceService, private router: Router, private fb: FormBuilder, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController, private translate: TranslateService) {
@@ -50,31 +53,37 @@ export class MoviesPage implements OnInit {
 
   ngOnInit() {
    this.loading = true;
-   this.movies = this.moviesService.getMovies()
-    this.filteredMovies = this.movies;
+   this.moviesService.getMovies().pipe(finalize(() => this.loading = false)).subscribe({
+      next: (movies: Movie[]) => {
+        this.movies = movies;
+        this.filteredMovies = movies;
+      },
+      error: (error) => {
+        console.log('Error:', error);
+      }
+   })
     this.filters = {
       categories: {},
       rating: null,
       yearStart: null,
       yearEnd: null,
     };
-    this.loading = false;
   }
 
   sortMovies(criteria: string) {
     this.loading = true;
     switch (criteria) {
       case 'best':
-        this.filteredMovies = this.movies.sort((a, b) => b.rating - a.rating);
+        this.filteredMovies = this.movies.sort((a, b) => b.score - a.score);
         break;
       case 'worst':
-        this.filteredMovies = this.movies.sort((a, b) => a.rating - b.rating);
+        this.filteredMovies = this.movies.sort((a, b) => a.score - b.score);
         break;
       case 'newest':
-        this.filteredMovies = this.movies.sort((a, b) => +b.year - +a.year);
+        this.filteredMovies = this.movies.sort((a, b) => +b.releaseDate - +a.releaseDate);
         break;
       case 'oldest':
-        this.filteredMovies = this.movies.sort((a, b) => +a.year - +b.year);
+        this.filteredMovies = this.movies.sort((a, b) => +a.releaseDate - +b.releaseDate);
         break;
     }
     this.loading = false;
@@ -150,18 +159,18 @@ export class MoviesPage implements OnInit {
     this.loading = true;
     this.filteredMovies = this.movies.filter(movie => {
       const isInYearRange =
-        (!this.filters.yearStart || +movie.year >= this.filters.yearStart) &&
-        (!this.filters.yearEnd || +movie.year <= this.filters.yearEnd);
+        (!this.filters.yearStart || +movie.releaseDate >= this.filters.yearStart) &&
+        (!this.filters.yearEnd || +movie.releaseDate <= this.filters.yearEnd);
   
       const selectedCategories = Object.keys(this.filters.categories).filter(
         key => this.filters.categories[key]
       );
 
       const matchesCategory =
-        selectedCategories.length === 0 || selectedCategories.includes(movie.genre);
+        selectedCategories.length === 0 || selectedCategories.includes(Genre[movie.genre]);
   
       const matchesRating =
-        !this.filters.rating || movie.rating >= this.filters.rating;
+        !this.filters.rating || movie.score >= this.filters.rating;
   
       return isInYearRange && matchesCategory && matchesRating;
     });
@@ -175,9 +184,9 @@ export class MoviesPage implements OnInit {
   onFilterUpdate(event: CustomEvent<SegmentChangeEventDetail>) {
     const option = event.detail.value;
     if(option === "best"){
-      this.movies = this.movies.sort((a, b) => b.rating - a.rating);
+      this.movies = this.movies.sort((a, b) => b.score - a.score);
     } else {
-      this.movies = this.movies.sort((a, b) => a.rating - b.rating);
+      this.movies = this.movies.sort((a, b) => a.score - b.score);
     }
   }
 

@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) { }
 
   login(user: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${environment.apiUrl}User/signin`, user).pipe(
+    return this.http.post(`${environment.apiUrl}/User/signin`, user).pipe(
       tap((res: any) => {
         console.log(res);
         this.tokenSubject.next(res.accessToken);
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   register(user: { login: string; email: string; password: string }): Observable<any> {
-    return this.http.post('http://localhost:5074/api/User/signup', user, {
+    return this.http.post(`${environment.apiUrl}/User/signup`, user, {
       responseType: 'text'
     });
   }
@@ -46,7 +46,7 @@ export class AuthService {
   
     console.log('Token:', `Bearer ${token}`);
   
-    return this.http.get('http://localhost:5074/api/User/me', { headers });
+    return this.http.get(`${environment.apiUrl}/User/me`, { headers });
   }
 
   continueAsGuest(){

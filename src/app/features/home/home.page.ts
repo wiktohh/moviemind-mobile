@@ -11,6 +11,7 @@ import { addIcons } from 'ionicons';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 register()
 
@@ -27,6 +28,7 @@ export class HomePage implements OnInit {
   movies: Movie[] = []
   actors: Actor[] = []
   loading: boolean = false
+  tempImage = environment.tempImage
 
   constructor(
     private moviesService: MoviesServiceService,
@@ -48,7 +50,7 @@ export class HomePage implements OnInit {
   }
 
   onCardClick(el: Movie | Actor) {
-    if ('poster' in el) {
+    if ('image' in el) {
       this.router.navigate(['/movies', el.id])
     } else {
       this.router.navigate(['/actors', el.id])

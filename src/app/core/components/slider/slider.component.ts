@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output 
 import { Router } from '@angular/router';
 import { Actor } from 'src/app/shared/models/actors/actor.model';
 import { Movie } from 'src/app/shared/models/movies/movie.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-slider',
@@ -18,6 +19,8 @@ export class SliderComponent {
   @Input() width: number = 125;
   @Input() slidesPerView = 2.5;
   @Output() cardClick = new EventEmitter<Movie | Actor>();
+
+  tempImage = environment.tempImage
 
 
   constructor(private router: Router) {}

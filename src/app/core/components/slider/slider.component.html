@@ -6,7 +6,7 @@
       [style.height.px]="height + 50"
       class="rounded-lg"
     >
-      <img [style.width.px]="width" [style.height.px]="height" [src]="isMovie(el) ? el.image : el.img" />
+      <img [style.width.px]="width" [style.height.px]="height" [src]="isMovie(el) ? (el.image || tempImage) : (el.img || tempImage)" />
       <ion-card-header class="h-[60px] px-2 py-2 flex flex-col justify-between">
         <ion-card-title *ngIf="isMovie(el); else isActor" class="text-sm text-center">
           {{ el.title }}

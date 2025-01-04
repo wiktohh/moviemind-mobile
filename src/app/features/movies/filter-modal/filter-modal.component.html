@@ -11,14 +11,13 @@
         </ion-item>
       </ion-list>
       <h3 class="my-2 text-center text-xl">{{ 'moviePage.minRating' | translate }}</h3>
-        <ion-list class="flex justify-between">
-          <ion-item *ngFor="let mark of marks">
-            <ion-label [for]="mark">{{ mark }}</ion-label>
-            <ion-checkbox [id]="mark" slot="end" [checked]="filters.rating === +mark" (ionChange)="onRatingChange(mark)" name="{{mark}}"></ion-checkbox>
+        <ion-list class="flex flex-row justify-center w-full">
+          <ion-item class="flex" *ngFor="let mark of marks">
+            <ion-label class="mr-[0.35rem]" [for]="mark">{{ mark }}</ion-label>
+            <ion-checkbox class="ml-[0.35rem]" [id]="mark" [checked]="filters.rating === +mark" (ionChange)="onRatingChange(mark)" name="{{mark}}"></ion-checkbox>
           </ion-item>
         </ion-list>
       <ion-button (click)="apply()" class="my-12 mx-auto" expand="block">{{ 'moviePage.apply' | translate }}</ion-button>
-
       <ion-button (click)="cancel()" class="absolute bottom-12 w-full left-1/2 translate-x-[-50%]"  fill="outline" color="danger" expand="block">{{ 'moviePage.cancel' | translate }}</ion-button>
     </form>
   </ion-content>

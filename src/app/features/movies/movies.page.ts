@@ -84,26 +84,26 @@ export class MoviesPage implements OnInit {
 
   onSortClick() {
     this.actionSheetCtrl.create({
-      header: this.translate.instant('sort.header'),
+      header: this.translate.instant('moviePage.sort.header'),
       buttons: [
         {
-          text: this.translate.instant('sort.best'),
+          text: this.translate.instant('moviePage.sort.best'),
           handler: () => this.sortMovies('best'),
         },
         {
-          text: this.translate.instant('sort.worst'),
+          text: this.translate.instant('moviePage.sort.worst'),
           handler: () => this.sortMovies('worst'),
         },
         {
-          text: this.translate.instant('sort.newest'),
+          text: this.translate.instant('moviePage.sort.newest'),
           handler: () => this.sortMovies('newest'),
         },
         {
-          text: this.translate.instant('sort.oldest'),
+          text: this.translate.instant('moviePage.sort.oldest'),
           handler: () => this.sortMovies('oldest'),
         },
         {
-          text: this.translate.instant('sort.cancel'),
+          text: this.translate.instant('moviePage.sort.cancel'),
           role: 'cancel',
         },
       ],

@@ -9,7 +9,7 @@ import { addIcons } from 'ionicons';
 import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { finalize, Subscription } from 'rxjs';
+import { finalize, forkJoin, Observable, Subscription } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
@@ -44,20 +44,37 @@ export class MovieDetailsPage implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.movieId = this.route.snapshot.paramMap.get('id') || '';
-    console.log(this.movieId)
+    console.log(this.movieId);
+
     this.authSubscription.add(
       this.authService.user$.subscribe((user) => {
         this.user = user;
       })
     );
-    this.movieService.getMovieById(this.movieId).pipe(finalize(() => this.loading = false)).subscribe({
-      next: (movie: Movie) => {
-        this.movie = movie;
-      },
-      error: (error) => {
-        console.log('Error:', error);
-      }
-    })
+
+    const requests: { movie: Observable<Movie>, favorites?: Observable<Movie[]>, watchlist?: Observable<Movie[]> } = {
+      movie: this.movieService.getMovieById(this.movieId),
+    }
+
+    if(this.user){
+      requests['favorites'] = this.movieService.getFavorites();
+      requests['watchlist'] = this.movieService.getWatchLater();
+    }
+
+    forkJoin(requests)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: ({ movie, favorites, watchlist }) => {
+          this.movie = movie;
+          if(this.user){
+            this.isFavorite = favorites?.some(favorite => favorite.id === this.movieId) || false;
+            this.isWatchlist = watchlist?.some(watchlist => watchlist.id === this.movieId) || false;
+          }
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        }
+      });
   }
 
   getMovieCountries(): string {
@@ -78,13 +95,52 @@ export class MovieDetailsPage implements OnInit {
   }
 
   addToFavorites(): void {
-    this.isFavorite = !this.isFavorite;
-    console.log(`Dodano film ${this.movie?.title} do ulubionych.`);
+    console.log(this.movieId)
+    this.movieService.addToFavorites(this.movieId).subscribe({
+      next: (movie: Movie) => {
+        this.isFavorite = !this.isFavorite;
+        console.log(`Dodano film ${movie.title} do ulubionych.`);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+
+  removeFromFavorites(): void {
+    this.movieService.removeFromFavorites(this.movieId).subscribe({
+      next: (movie: Movie) => {
+        this.isFavorite = !this.isFavorite;
+        console.log(`Usunięto film ${movie.title} z ulubionych.`);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
   addToWatchlist(): void {
-    this.isWatchlist = !this.isWatchlist;
-    console.log(`Dodano film ${this.movie?.title} do listy do obejrzenia.`);
+    this.movieService.addToWatchLater(this.movieId).subscribe({
+      next: (movie: Movie) => {
+        this.isWatchlist = !this.isWatchlist;
+        console.log(`Dodano film ${movie.title} do listy do obejrzenia później.`);
+      },
+      error: (error) => {
+        console.error(error);
+      }})
+  }
+
+  removeFromWatchlist(): void {
+    console.log(this.movieId)
+    this.movieService.removeFromWatchLater(this.movieId).subscribe({
+      next: (movie: Movie) => {
+        this.isWatchlist = !this.isWatchlist;
+        console.log(`Usunięto film ${movie.title} z listy do obejrzenia później.`);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
   rateMovie(value: number): void {

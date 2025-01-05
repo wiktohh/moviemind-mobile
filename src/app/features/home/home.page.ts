@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
-    this.moviesService.getMovies().pipe(finalize(() => this.loading = false)).subscribe({
+    this.moviesService.getMovies().subscribe({
       next: (movies: Movie[]) => {
         this.movies = movies
       },
@@ -46,7 +46,14 @@ export class HomePage implements OnInit {
         console.log('Error:', error)
       }
     })
-    this.actors = this.actorsService.getActors()
+    this.actorsService.getActors().pipe(finalize(() => this.loading = false)).subscribe({
+      next: (actors: Actor[]) => {
+        this.actors = actors
+      },
+      error: (error) => {
+        console.log('Error:', error)
+      }
+    })
   }
 
   onCardClick(el: Movie | Actor) {

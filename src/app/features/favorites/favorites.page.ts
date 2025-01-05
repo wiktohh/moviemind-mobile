@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { TranslateModule } from '@ngx-translate/core';
+import { Genre, Movie } from 'src/app/shared/models/movies/movie.model';
+import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -12,8 +15,26 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit {
 
-  constructor() { }
+  movies: Movie[] = [];
+  Genre = Genre;
+
+  constructor(private movieService: MoviesServiceService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.movieService.getFavorites().subscribe({
+      next: (movies) => {
+        this.movies = movies;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+
+  goToDetails(movieId: string) {
+    this.router.navigate(['/movies', movieId]); 
+  }
 
 }

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment';
-import { Movie } from '../../models/movies/movie.model';
+import { Movie, Review } from '../../models/movies/movie.model';
+import { ReviewMovie } from '../../models/movies/review.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,11 @@ export class MoviesServiceService {
 
   removeFromWatchLater(id: string): Observable<Movie> {
     return this.http.delete<Movie>(`${environment.apiUrl}/Movie/watchLater/${id}`);
+  }
+
+  addReview(dto: ReviewMovie): Observable<any> {
+    console.log("DTO",dto);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(`${environment.apiUrl}/Review`, dto, {headers});
   }
 }

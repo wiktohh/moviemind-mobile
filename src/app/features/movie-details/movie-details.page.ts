@@ -1,10 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
+import { IonTextarea, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
-import { Genre, Movie } from 'src/app/shared/models/movies/movie.model';
+import { Genre, Movie, Review } from 'src/app/shared/models/movies/movie.model';
 import { addIcons } from 'ionicons';
 import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
@@ -12,13 +12,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { finalize, forkJoin, Observable, Subscription } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { ReviewMovie } from 'src/app/shared/models/movies/review.model';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.page.html',
   styleUrls: ['./movie-details.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TranslateModule],
+  imports: [IonTextarea, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MovieDetailsPage implements OnInit {
@@ -36,8 +38,9 @@ export class MovieDetailsPage implements OnInit {
   tempMovieImage = environment.tempImage;
   private authSubscription: Subscription = new Subscription();
   user: any = null;
+  commentMovieReview: string = '';
 
-  constructor(private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
+  constructor(private toastService: ToastService, private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
     addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
   }
 
@@ -173,7 +176,20 @@ export class MovieDetailsPage implements OnInit {
   }
 
   submitReview(): void {
-    console.log("XD")
+    const dto: ReviewMovie = {
+      rating: this.ratingMovie,
+      comment: this.commentMovieReview,
+      movieId: this.movieId,
+    }
+    console.log(dto)
+    this.movieService.addReview(dto).subscribe({
+      next: () => {
+        console.log('Dodano recenzję.');
+        this.toastService.success('Recenzja została dodana.');
+      },
+      error: (error) => {
+        console.error(error)
+    }})
   }
 
 }

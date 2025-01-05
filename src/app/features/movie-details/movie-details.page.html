@@ -135,7 +135,7 @@
           (click)="rateMovie(i + 1)">
         </ion-icon>
       </div>
-      <ion-textarea rows="7" class="my-2" placeholder="Podziel się swoją opinią (opcjonalnie)"></ion-textarea>
+      <ion-textarea [(ngModel)]="commentMovieReview"  rows="7" class="my-2" placeholder="Podziel się swoją opinią (opcjonalnie)"></ion-textarea>
       <ion-button expand="block"  class="mt-4" (click)="submitReview()">{{ 'movieDetails.addReview' | translate }}</ion-button>
     </ion-content>
   </ion-modal>

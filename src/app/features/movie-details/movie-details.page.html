@@ -114,7 +114,14 @@
           <h3 class="text-lg font-semibold">{{ review.user.login }}</h3>
           <ion-text>{{ review.comment }}</ion-text>
         </div>
-        <div slot="end" class="flex items-center gap-1">
+        <div slot="end" class="flex items-center justify-center gap-1">
+          <ion-button 
+            *ngIf="user && review.user.id === user.id"
+            class="text-red-500"
+            fill="clear"
+            (click)="deleteReview(review.id)">
+          <ion-icon class="w-6 h-6" name="trash"></ion-icon>
+        </ion-button>
           <ion-icon class="text-yellow-500" name="star"></ion-icon>
           <ion-text>{{ review.rating }}</ion-text>
         </div>

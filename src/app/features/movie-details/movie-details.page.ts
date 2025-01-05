@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import { Genre, Movie, Review } from 'src/app/shared/models/movies/movie.model';
 import { addIcons } from 'ionicons';
-import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark } from 'ionicons/icons';
+import { add, addOutline, calendar, earth, film, star, starOutline, videocam, heart, time, bookmark, trash } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { finalize, forkJoin, Observable, Subscription } from 'rxjs';
@@ -42,7 +42,7 @@ export class MovieDetailsPage implements OnInit {
   commentMovieReview: string = '';
 
   constructor(private toastService: ToastService, private actorService: ActorsService, private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
-    addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
+    addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,trash});
   }
 
   ngOnInit() {
@@ -52,6 +52,7 @@ export class MovieDetailsPage implements OnInit {
 
     this.authSubscription.add(
       this.authService.user$.subscribe((user) => {
+        console.log(user)
         this.user = user;
       })
     );
@@ -168,6 +169,16 @@ export class MovieDetailsPage implements OnInit {
     console.log(`Oceniono aktora ${this.selectedActor.firstName} ${this.selectedActor.lastName} na ${value}/5.`);
   }
 
+  getMovie() {
+    this.movieService.getMovieById(this.movieId).subscribe({
+      next: (movie) => {
+        this.movie = movie;
+      },
+      error: (error) => {
+        console.error(error);
+  }})
+  }
+
   submitActorReview(): void {
     const dto: ReviewActor = {
       rating: this.ratingActor,
@@ -187,6 +198,19 @@ export class MovieDetailsPage implements OnInit {
     this.router.navigate(['/actors', actorId]);
   }
 
+  deleteReview(reviewId: string): void {
+    this.movieService.deleteReview(reviewId).subscribe({
+      next: () => {
+        console.log('Usunięto recenzję.');
+        this.toastService.success('Recenzja została usunięta.');
+        this.getMovie();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+
   submitReview(): void {
     const dto: ReviewMovie = {
       rating: this.ratingMovie,
@@ -198,6 +222,7 @@ export class MovieDetailsPage implements OnInit {
       next: () => {
         console.log('Dodano recenzję.');
         this.toastService.success('Recenzja została dodana.');
+        this.getMovie()
       },
       error: (error) => {
         console.error(error)

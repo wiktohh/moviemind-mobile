@@ -53,4 +53,8 @@ export class MoviesServiceService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(`${environment.apiUrl}/Review`, dto, {headers});
   }
+
+  deleteReview(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/Review/${id}`);
+  }
 }

@@ -61,5 +61,9 @@ export class AuthService {
     console.log('User logged out');
   }
 
+  getToken(): string | null {
+    return this.tokenSubject.value;
+  }
+
 
 }

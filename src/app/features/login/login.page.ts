@@ -43,8 +43,12 @@ export class LoginPage {
         error: (err) => {
           this.toastService.failed('Błąd logowania');
           console.error('Błąd logowania:', err);
-        }
-      });
+          if(err.error.message === 'Invalid credentials'){
+            this.toastService.failed('Nieprawidłowy email lub hasło');
+          } else {
+            this.toastService.failed('Błąd logowania');
+          }
+      }});
     } else {
       console.log('Invalid login form');
     }

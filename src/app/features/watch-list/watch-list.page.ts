@@ -5,6 +5,7 @@ import { IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar 
 import { MoviesServiceService } from 'src/app/shared/services/movies/movies.service';
 import { Genre, Movie } from 'src/app/shared/models/movies/movie.model';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-watch-list',
@@ -19,7 +20,7 @@ export class WatchListPage {
   movies: Movie[] = [];
   Genre = Genre;
 
-  constructor(private movieService: MoviesServiceService, private router: Router) { }
+  constructor(private movieService: MoviesServiceService, private router: Router, private toastService: ToastService) { }
 
   ionViewWillEnter() {
     console.log("e uruchomisz sie?")
@@ -30,6 +31,7 @@ export class WatchListPage {
       },
       error: (error) => {
         console.error(error);
+        this.toastService.failed("Błąd podczas pobierania filmów do obejrzenia");
       }
     })
   }

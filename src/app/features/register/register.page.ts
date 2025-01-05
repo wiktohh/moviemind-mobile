@@ -42,7 +42,13 @@ export class RegisterPage {
           this.goToLogin();
         },
         error: (err) => {
-          this.toastService.failed('Błąd rejestracji');
+          //TODO: handle error
+          if(err.error.message === 'user with email already exists'){
+            this.toastService.failed('Użytkownik z podanym emailem już istnieje');
+          }
+          else{
+            this.toastService.failed('Błąd rejestracji');
+          }
           console.error('Błąd rejestracji:', err);
         },
       })

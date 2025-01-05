@@ -105,9 +105,11 @@ export class MovieDetailsPage implements OnInit {
       next: (movie: Movie) => {
         this.isFavorite = !this.isFavorite;
         console.log(`Dodano film ${movie.title} do ulubionych.`);
+        this.toastService.success('Film został dodany do ulubionych.');
       },
       error: (error) => {
         console.error(error);
+        this.toastService.success('Nie udało się dodać filmu do ulubionych.');
       }
     })
   }
@@ -117,9 +119,11 @@ export class MovieDetailsPage implements OnInit {
       next: (movie: Movie) => {
         this.isFavorite = !this.isFavorite;
         console.log(`Usunięto film ${movie.title} z ulubionych.`);
+        this.toastService.success('Film został usunięty z ulubionych.');
       },
       error: (error) => {
         console.error(error);
+        this.toastService.success('Nie udało się usunąć filmu z ulubionych.');
       }
     })
   }
@@ -129,9 +133,11 @@ export class MovieDetailsPage implements OnInit {
       next: (movie: Movie) => {
         this.isWatchlist = !this.isWatchlist;
         console.log(`Dodano film ${movie.title} do listy do obejrzenia później.`);
+        this.toastService.success('Film został dodany do listy do obejrzenia później.');
       },
       error: (error) => {
         console.error(error);
+        this.toastService.success('Nie udało się dodać filmu do listy do obejrzenia później.');
       }})
   }
 
@@ -141,9 +147,11 @@ export class MovieDetailsPage implements OnInit {
       next: (movie: Movie) => {
         this.isWatchlist = !this.isWatchlist;
         console.log(`Usunięto film ${movie.title} z listy do obejrzenia później.`);
+        this.toastService.success('Film został usunięty z listy do obejrzenia później.');
       },
       error: (error) => {
         console.error(error);
+        this.toastService.success('Nie udało się usunąć filmu z listy do obejrzenia później.');
       }
     })
   }
@@ -191,6 +199,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error)
+        this.toastService.failed('Nie udało się dodać recenzji.');
     }});
   }
 
@@ -207,6 +216,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error);
+        this.toastService.failed('Nie udało się usunąć recenzji.');
       }
     })
   }
@@ -226,6 +236,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error)
+        this.toastService.failed('Nie udało się dodać recenzji.');
     }})
   }
 

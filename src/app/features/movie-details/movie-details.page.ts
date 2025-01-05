@@ -12,8 +12,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { finalize, forkJoin, Observable, Subscription } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { ReviewMovie } from 'src/app/shared/models/movies/review.model';
+import { ReviewActor, ReviewMovie } from 'src/app/shared/models/movies/review.model';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
+import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -40,7 +41,7 @@ export class MovieDetailsPage implements OnInit {
   user: any = null;
   commentMovieReview: string = '';
 
-  constructor(private toastService: ToastService, private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
+  constructor(private toastService: ToastService, private actorService: ActorsService, private route: ActivatedRoute, private movieService: MoviesServiceService, private router: Router, private authService: AuthService) { 
     addIcons({videocam,earth,film,time,calendar,star,heart,bookmark,add,starOutline,addOutline,});
   }
 
@@ -152,6 +153,7 @@ export class MovieDetailsPage implements OnInit {
   }
 
   openActorModal(actor: any): void {
+    console.log(actor)
     this.selectedActor = actor;
     this.isModalActorOpen = true;
   }
@@ -167,8 +169,18 @@ export class MovieDetailsPage implements OnInit {
   }
 
   submitActorReview(): void {
-    console.log(`Dodano recenzję dla aktora: ${this.selectedActor.firstName} ${this.selectedActor.lastName}, Ocena: ${this.ratingActor}/5`);
-    this.closeActorModal();
+    const dto: ReviewActor = {
+      rating: this.ratingActor,
+      roleId: this.selectedActor,
+    }
+    this.actorService.addActorReview(dto).pipe(finalize(() => this.closeActorModal())).subscribe({
+      next: () => {
+        console.log('Dodano recenzję.');
+        this.toastService.success('Recenzja została dodana.');
+      },
+      error: (error) => {
+        console.error(error)
+    }});
   }
 
   redirectToActor(actorId: string): void {

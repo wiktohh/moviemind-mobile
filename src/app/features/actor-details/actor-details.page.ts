@@ -29,7 +29,14 @@ export class ActorDetailsPage implements OnInit {
 
   ngOnInit() {
     this.actorId = this.route.snapshot.paramMap.get('id') || '';
-    this.actor = this.actorService.getActorById(this.actorId) || null;
+    // this.actorService.getActorById(this.actorId).subscribe({
+    //   next: (actor: Actor) => {
+    //     this.actor = actor;
+    //   },
+    //   error: (error) => {
+    //     console.log('Error:', error);
+    //   }
+    // })
     console.log(this.actor)
   }
 

@@ -83,7 +83,7 @@
   <h2 class="text-center text-2xl mt-4">{{ 'movieDetails.actors' | translate }}</h2>
   <swiper-container [slidesPerView] = '2.5' [loop]="true">
     <swiper-slide *ngFor="let actor of movie!.roles">
-      <ion-card class="relative" (click)="redirectToActor(actor.id)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
+      <ion-card class="relative" (click)="redirectToActor(actor.personId)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
         <img [style.width.px]="150" [style.height.px]="180" [src]="actor.person.pictureUrl" />
         <ion-button
         *ngIf="user" 

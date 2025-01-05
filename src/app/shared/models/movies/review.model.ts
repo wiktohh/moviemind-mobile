@@ -3,3 +3,8 @@ export interface ReviewMovie {
     comment: string
     movieId: string
 }
+
+export interface ReviewActor {
+    rating: number
+    roleId: string
+}

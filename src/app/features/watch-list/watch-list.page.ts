@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class WatchListPage implements OnInit {
+export class WatchListPage {
 
   movies: Movie[] = [];
   Genre = Genre;
 
   constructor(private movieService: MoviesServiceService, private router: Router) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     console.log("e uruchomisz sie?")
     this.movieService.getWatchLater().subscribe({
       next: (movies) => {

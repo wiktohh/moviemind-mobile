@@ -97,7 +97,15 @@
     "english": "Angielski"
   },
   "watchlist": {
-    "title": "Lista obejrzanych",
-    "empty": "Brak obejrzanych"
+    "title": "Do obejrzenia",
+    "empty": "Brak filmów do obejrzenia"
+  },
+  "errors": {
+    "400": "Nieprawidłowe żądanie (400).",
+    "401": "Brak autoryzacji (401).",
+    "403": "Brak dostępu (403).",
+    "404": "Nie znaleziono zasobu (404).",
+    "500": "Błąd serwera (500).",
+    "default": "Wystąpił błąd."
   }
 }

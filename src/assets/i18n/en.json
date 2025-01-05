@@ -99,5 +99,13 @@
   "watchlist": {
     "title": "Watchlist",
     "empty": "No movies in watchlist"
+  },
+  "errors": {
+    "400": "Bad Request (400).",
+    "401": "Unauthorized (401).",
+    "403": "Forbidden (403).",
+    "404": "Resource Not Found (404).",
+    "500": "Server Error (500).",
+    "default": "An error occurred"
   }
 }

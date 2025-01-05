@@ -18,7 +18,7 @@
   ></ion-searchbar>
 
   <ion-list *ngIf="filteredMovies.length > 0">
-    <ion-item *ngFor="let movie of filteredMovies" (click)="goToDetails(movie.id)">
+    <ion-item *ngFor="let movie of filteredMovies" (click)="goToDetails(movie.id)" detail>
       <ion-thumbnail slot="start">
         <img [src]="movie.image" />
       </ion-thumbnail>
@@ -30,6 +30,6 @@
   </ion-list>
 
   <div *ngIf="searchTerm && filteredMovies.length === 0" class="no-results">
-    <ion-text>{{ 'search.noResults' | translate }}</ion-text>
+    <p class="text-center">{{ 'search.noResults' | translate }}</p>
   </div>
 </ion-content>

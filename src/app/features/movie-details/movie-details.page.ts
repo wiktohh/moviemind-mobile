@@ -109,7 +109,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastService.success('Nie udało się dodać filmu do ulubionych.');
+        this.toastService.failed('Nie udało się dodać filmu do ulubionych.');
       }
     })
   }
@@ -123,7 +123,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastService.success('Nie udało się usunąć filmu z ulubionych.');
+        this.toastService.failed('Nie udało się usunąć filmu z ulubionych.');
       }
     })
   }
@@ -137,7 +137,7 @@ export class MovieDetailsPage implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastService.success('Nie udało się dodać filmu do listy do obejrzenia później.');
+        this.toastService.failed('Nie udało się dodać filmu do listy do obejrzenia później.');
       }})
   }
 
@@ -146,12 +146,11 @@ export class MovieDetailsPage implements OnInit {
     this.movieService.removeFromWatchLater(this.movieId).subscribe({
       next: (movie: Movie) => {
         this.isWatchlist = !this.isWatchlist;
-        console.log(`Usunięto film ${movie.title} z listy do obejrzenia później.`);
         this.toastService.success('Film został usunięty z listy do obejrzenia później.');
       },
       error: (error) => {
         console.error(error);
-        this.toastService.success('Nie udało się usunąć filmu z listy do obejrzenia później.');
+        this.toastService.failed('Nie udało się usunąć filmu z listy do obejrzenia później.');
       }
     })
   }

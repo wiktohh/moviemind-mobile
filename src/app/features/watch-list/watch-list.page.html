@@ -10,7 +10,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-spinner *ngIf="loading"></ion-spinner>
+<ion-content *ngIf="!loading" [fullscreen]="true">
   <div class="text-center" *ngIf="movies.length === 0">Brak filmów dodanych</div>
   <ion-list *ngIf="movies.length > 0">
     <ion-item *ngFor="let movie of movies" (click)="goToDetails(movie.id)" detail>

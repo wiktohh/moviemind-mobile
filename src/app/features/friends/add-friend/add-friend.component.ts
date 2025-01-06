@@ -6,6 +6,8 @@ import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonSearchbar, IonTex
 import { addIcons } from 'ionicons';
 import { personAdd } from 'ionicons/icons';
 import { TranslateModule } from '@ngx-translate/core';
+import { FriendsService } from 'src/app/shared/services/friends/friends.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-add-friend',
@@ -14,18 +16,27 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [IonIcon, IonButton, IonText, IonLabel, IonList, IonSearchbar, IonContent, IonItem, IonTitle, IonHeader, IonToolbar, CommonModule, FormsModule, TranslateModule],
 })
-export class AddFriendComponent {
+export class AddFriendComponent implements OnInit {
   searchFriend: string = '';
   filteredUsers: any[] = [];
-  users: any[] = [
-    { id: 1, name: 'Anna Kowalska', email: 'anna@example.com', avatar: 'assets/avatar1.jpg' },
-    { id: 2, name: 'Jan Nowak', email: 'jan@example.com', avatar: 'assets/avatar2.jpg' },
-    { id: 3, name: 'Maria Wiśniewska', email: 'maria@example.com', avatar: 'assets/avatar3.jpg' }
-  ];
+  users: any[] = [];
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private friendService: FriendsService, private authService: AuthService) { 
     addIcons({personAdd});
     console.log('AddFriendComponent constructor');
+  }
+
+  ngOnInit(): void {
+    const currentUser = this.authService.getUser();
+    this.friendService.getUsers().subscribe({
+      next: (users: any) => {
+        this.users = users.filter((user: any) => user.id !== currentUser.id);
+        console.log('Users:', users);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
   onSearch() {
@@ -34,11 +45,18 @@ export class AddFriendComponent {
       return;
     }
     this.filteredUsers = this.users.filter((user) =>
-      user.name.toLowerCase().includes(this.searchFriend.toLowerCase())
+      user.login.toLowerCase().includes(this.searchFriend.toLowerCase()) || user.email.toLowerCase().includes(this.searchFriend.toLowerCase())
     );
   }
 
   addFriend(user: any) {
-    console.log('Add friend:', user);
+    this.friendService.addFriend(user.id).subscribe({
+      next: (response) => {
+        console.log('Friend request sent:', response);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }

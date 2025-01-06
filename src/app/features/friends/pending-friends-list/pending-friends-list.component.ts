@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { add, checkmark } from 'ionicons/icons';
+import { FriendsService } from 'src/app/shared/services/friends/friends.service';
 
 @Component({
   selector: 'app-pending-friends-list',
@@ -9,23 +12,51 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
   imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PendingFriendsListComponent {
+export class PendingFriendsListComponent implements OnInit{
 
-  constructor() { }
+  friends: any[] = []
 
-  friends = [
-    {id: 1, name: 'John', avatar: 'https://randomuser.me/api/port', status: 'online' },
-  ]
+  constructor(private friendService: FriendsService) {
+    addIcons({checkmark})
+   }
 
+  ngOnInit(): void {
+    this.getPendingFriends();
+  }
 
-  removeFriend(friend: any) {
-    this.friends = this.friends.filter(f => f.id !== friend.id);
-    console.log('Removed pending friend:', friend);
+  getPendingFriends(){
+    this.friendService.getPendingFriends().subscribe({
+      next: (friends: any) => {
+        this.friends = friends;
+        console.log('Pending friends:', friends);
+      },
+      error: (error) => {
+        console.error(error);
+      }});
+  }
+
+  rejectFriend(friend: any) {
+    this.friendService.rejectFriend(friend.id).subscribe({
+      next: (response) => {
+        console.log('Friend request rejected:', response);
+        this.getPendingFriends()
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
   acceptFriend(friend: any) {
-    friend.status = 'accepted';
-    console.log('Accepted friend:', friend);
+    this.friendService.acceptFriend(friend.id).subscribe({
+      next: (response) => {
+        console.log('Friend request accepted:', response);
+        this.getPendingFriends()
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
 }

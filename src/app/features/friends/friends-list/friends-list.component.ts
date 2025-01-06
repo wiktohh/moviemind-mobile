@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { IonList, IonItem, IonAvatar, IonLabel, IonButton, IonIcon } from "@ionic/angular/standalone";
+import { FriendsService } from 'src/app/shared/services/friends/friends.service';
 
 @Component({
   selector: 'app-friends-list',
@@ -11,13 +12,25 @@ import { IonList, IonItem, IonAvatar, IonLabel, IonButton, IonIcon } from "@ioni
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class FriendsListComponent {
+export class FriendsListComponent implements OnInit {
 
-  friends = [
-    { name: 'John', avatar: 'https://randomuser.me/api/port', status: 'online' },
-  ]
+  friends: any[] = []
 
-  constructor() { }
+  constructor(private friendService: FriendsService) { }
+
+  ngOnInit() {
+    console.log('FriendsListComponent ionViewWillEnter');
+    this.friendService.getFriends().subscribe({
+      next: (friends) => {
+        this.friends = friends;
+        console.log(friends)
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
 
   removeFriend(friend: any) {
     console.log('Remove friend:', friend);

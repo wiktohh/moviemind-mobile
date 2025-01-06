@@ -9,27 +9,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+<ion-content *ngIf="!loading" [fullscreen]="true">
     <ion-list>
       <ion-item (click)="onActorClick(actors[0].id)">
           <ion-card> 
-            <img class="rounded-xl" [src]="actors[0].img"/>
+            <img class="rounded-xl" [src]="actors[0].image"/>
             <ion-card-header>
               <ion-card-title>{{ actors[0].firstName }} {{ actors[0].lastName }}</ion-card-title>
               <ion-card-subtitle
-              ><ion-text>{{ 'actorsPage.age' | translate }}: {{ actors[0].age }} | {{ actors[0].movies.length }} {{ 'actorsPage.movies' | translate }}</ion-text></ion-card-subtitle
+              ><ion-text>{{ 'actorsPage.age' | translate }}: {{ countAge(actors[0]!.birthDate) }} </ion-text></ion-card-subtitle
               >
             </ion-card-header>
           </ion-card>
       </ion-item>
     <ion-item (click)="onActorClick(actor.id)" *ngFor="let actor of actors.slice(1)" class="py-4 w-full flex items-center" detail>
-        <img [src]="actor.img" class="w-[70px] h-[95px] rounded-lg" />
+        <img [src]="actor.image" class="w-[70px] h-[95px] rounded-lg" />
       <div class="w-3/4 h-full flex flex-col justify-between py-4 px-2">
         <div class="flex justify-between">
           <ion-text>{{ actor.firstName }} {{ actor.lastName }}</ion-text>
         </div>
         <div class="flex flex-col gap-2 text-xs">
-          <ion-text>{{ 'actorsPage.age' | translate }}: {{ actor.age }} | {{ actor.movies.length }} {{ 'actorsPage.movies' | translate }}</ion-text>
+          <ion-text>{{ 'actorsPage.age' | translate }}: {{ countAge(actor!.birthDate) }} </ion-text>
         </div>
       </div>
     </ion-item>

@@ -6,10 +6,11 @@ import { ActorsService } from 'src/app/shared/services/actors/actors.service';
 import { Actor } from 'src/app/shared/models/actors/actor.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { person, personOutline } from 'ionicons/icons';
+import { person, personOutline, star } from 'ionicons/icons';
 import { SliderComponent } from "../../core/components/slider/slider.component";
 import { Movie } from 'src/app/shared/models/movies/movie.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-actor-details',
@@ -22,23 +23,39 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class ActorDetailsPage implements OnInit {
   actorId: string = '';
   actor: Actor | null = null;
+  loading: boolean = false;
 
   constructor(private actorService: ActorsService, private route: ActivatedRoute,  private navController: NavController) { 
-    addIcons({personOutline});
+    addIcons({personOutline,star});
   }
 
   ngOnInit() {
+    this.loading = true;
     this.actorId = this.route.snapshot.paramMap.get('id') || '';
-    // this.actorService.getActorById(this.actorId).subscribe({
-    //   next: (actor: Actor) => {
-    //     this.actor = actor;
-    //   },
-    //   error: (error) => {
-    //     console.log('Error:', error);
-    //   }
-    // })
+    this.actorService.getActorById(this.actorId).pipe(finalize(() => this.loading = false)).subscribe({
+      next: (actor: Actor) => {
+        this.actor = actor;
+        console.log(this.actor)
+      },
+      error: (error) => {
+        console.log('Error:', error);
+      }
+    })
     console.log(this.actor)
   }
+
+  // getActorMovies(id: string){
+  //   this.actorService.getMoviesForActor(this.actorId).subscribe({
+  //     next: (movies: Movie[]) => {
+  //       if (this.actor) {
+  //         this.actor.movies = movies;
+  //       }
+  //     },
+  //     error: (error) => {
+  //       console.log('Error:', error);
+  //     }
+  //   })
+  // }
 
   onCardClick(actor: Actor | Movie) {
     this.navController.navigateForward(['/actors', actor.id]);
@@ -46,6 +63,17 @@ export class ActorDetailsPage implements OnInit {
 
   onMovieClick(movieId: string) {
     this.navController.navigateForward(['/movies', movieId]);
+  }
+
+  countAge(birthDate: string) {
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
   }
 
 }

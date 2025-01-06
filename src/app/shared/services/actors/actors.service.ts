@@ -13,12 +13,16 @@ export class ActorsService {
   constructor(private http: HttpClient) { }
 
   getActors(): Observable<Actor[]> {
-    return this.http.get<Actor[]>(`${environment.apiUrl}/Role`);
+    return this.http.get<Actor[]>(`${environment.apiUrl}/People`);
   }
 
-  // getActorById(id: string) {
-  //   return this.actors.find(actor => actor.id === id);
-  // }
+  getActorById(id: string) {
+    return this.http.get<Actor>(`${environment.apiUrl}/People/${id}`);
+  }
+
+  getMoviesForActor(id: string) {
+    return this.http.get<any[]>(`${environment.apiUrl}/Role/actor/${id}`);
+  }
 
   addActorReview(dto: ReviewActor): Observable<any> {
     return this.http.post(`${environment.apiUrl}/RoleReview`, dto);

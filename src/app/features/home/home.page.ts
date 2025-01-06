@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
     this.moviesService.getMovies().subscribe({
       next: (movies: Movie[]) => {
         this.movies = movies
+        console.log("movies", movies)
       },
       error: (error) => {
         console.log('Error:', error)
@@ -49,6 +50,7 @@ export class HomePage implements OnInit {
     this.actorsService.getActors().pipe(finalize(() => this.loading = false)).subscribe({
       next: (actors: Actor[]) => {
         this.actors = actors
+        console.log(actors)
       },
       error: (error) => {
         console.log('Error:', error)
@@ -57,7 +59,7 @@ export class HomePage implements OnInit {
   }
 
   onCardClick(el: Movie | Actor) {
-    if ('image' in el) {
+    if ('genre' in el) {
       this.router.navigate(['/movies', el.id])
     } else {
       this.router.navigate(['/actors', el.id])

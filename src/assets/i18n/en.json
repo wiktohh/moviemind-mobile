@@ -63,6 +63,7 @@
     "createAccount": "Create Account",
     "email": "Email",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "login": "Login",
     "alreadyHaveAccount": "Already have an account? Login",
     "signup": "Sign Up"

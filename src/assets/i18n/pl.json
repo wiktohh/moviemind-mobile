@@ -63,6 +63,7 @@
     "createAccount": "Stwórz konto",
     "email": "Email",
     "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
     "login": "Login",
     "alreadyHaveAccount": "Masz już konto? Zaloguj się",
     "signup": "Zarejestruj się"

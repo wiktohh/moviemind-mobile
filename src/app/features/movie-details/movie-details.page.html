@@ -22,10 +22,10 @@
     <div class="mt-6 grid grid-cols-2 gap-x-12 gap-y-4">
       <div class="flex items-center gap-3">
         <ion-icon class="bg-gray-600 p-2 rounded-xl" style="font-size: 1.5rem;" name="videocam"></ion-icon>
-        <!-- <div class="flex flex-col">
+        <div class="flex flex-col">
           <ion-text class="text-sm font-semibold">{{ 'movieDetails.director' | translate }}</ion-text>
-          <ion-text class="text-sm">{{ movie?.director }}</ion-text>
-        </div> -->
+          <ion-text class="text-sm">{{'Christopher Nolan' }}</ion-text>
+        </div>
       </div>
       
       <div class="flex items-center gap-3">
@@ -84,7 +84,7 @@
   <swiper-container [slidesPerView] = '2.5' [loop]="true">
     <swiper-slide *ngFor="let actor of movie!.roles">
       <ion-card class="relative" (click)="redirectToActor(actor.personId)" [style.width.px]="150" [style.height.px]="220" class="rounded-lg" >
-        <img [style.width.px]="150" [style.height.px]="180" [src]="actor.person.pictureUrl" />
+        <img [style.width.px]="150" [style.height.px]="180" [src]="actor.person.image || 'https://www.pap.pl/sites/default/files/styles/main_image/public/202304/pap_20211205_2E7.jpg?h=0cba1c14&itok=yUL3s163'" />
         <ion-button
         *ngIf="user" 
         (click)="openActorModal(actor.id); $event.stopPropagation()"

@@ -75,6 +75,7 @@ export class MovieDetailsPage implements OnInit {
             this.isFavorite = favorites?.some(favorite => favorite.id === this.movieId) || false;
             this.isWatchlist = watchlist?.some(watchlist => watchlist.id === this.movieId) || false;
           }
+          console.log(this.movie);
         },
         error: (error) => {
           console.error('Error:', error);
@@ -84,6 +85,12 @@ export class MovieDetailsPage implements OnInit {
 
   getMovieCountries(): string {
     return this.movie?.countries?.map(country => country.countryName).join(', ') || '';
+  }
+
+  getDirector(): any {
+    const person = this.movie?.roles.find(role => role.movieProductionRole === 1);
+    if(person) return `${person?.person.firstName} ${person?.person.lastName}`;
+    return 'Brak danych';
   }
 
   getMovieDuration(): string {

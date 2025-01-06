@@ -59,7 +59,7 @@ export interface Movie {
     lastName: string;
     dateOfBirth: string;
     biography: string;
-    pictureUrl: string;
+    image: string;
   }
   
   export interface Country {

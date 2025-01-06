@@ -44,6 +44,10 @@ export class WatchListPage {
     console.log("XD")
   }
 
+  formatDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
+
   loadWatchList() {
     this.loading = true;
     console.log('Ładowanie listy do obejrzenia...');

@@ -60,6 +60,10 @@ export class SearchPage implements OnInit, OnDestroy  {
     })
   }
 
+  formatDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
+
   goToDetails(movieId: string) {
     this.router.navigate(['/movies', movieId]); 
   }

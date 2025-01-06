@@ -24,7 +24,7 @@
       </ion-thumbnail>
       <ion-label>
         <h2>{{ movie.title }}</h2>
-        <p>{{ movie.releaseDate }} &#8226; {{ Genre[movie.genre] }}</p>
+        <p>{{ formatDate(movie.releaseDate) }} &#8226; {{ Genre[movie.genre] }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

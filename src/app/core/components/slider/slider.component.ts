@@ -26,13 +26,15 @@ export class SliderComponent {
   constructor(private router: Router) {}
 
   isMovie(el: Movie | Actor): el is Movie {
-    return (el as Movie).image !== undefined;
+    return (el as Movie)?.genre !== undefined;
   }
 
   redirectToPage(el: Movie | Actor) {
     if(this.isMovie(el)) {
+      console.log("redirecting to movie details")
       this.router.navigate(['/movies', el.id]);
     } else {
+      console.log("redirecting to actor details")
       this.router.navigate(['/actors', el.id]);
     }
   }

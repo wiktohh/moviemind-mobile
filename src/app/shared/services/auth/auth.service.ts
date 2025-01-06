@@ -54,6 +54,10 @@ export class AuthService {
     this.userSubject.next(null);
   }
 
+  getUser(): any {
+    return this.userSubject.value;
+  }
+
   logout() {
     this.isAuthenticatedSubject.next(false);
     this.userSubject.next(null);
